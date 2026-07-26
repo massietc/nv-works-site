@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Angebot anfordern — NV Works</title>
+<link rel="icon" href="images/nv-works-logo.jpeg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand">
+      <img src="images/nv-works-logo.jpeg" alt="NV Works" class="brand-logo">
+    </a>
+    <a href="index.html" class="nav-cta ghost">Zurück zur Startseite</a>
+  </div>
+</nav>
+
+<header class="form-hero">
+  <p class="eyebrow">* Pflichtfeld</p>
+  <h1>Angebot anfordern</h1>
+  <p class="hero-sub">Füllen Sie das Formular aus — ich melde mich mit einem individuellen Angebot bei Ihnen.</p>
+</header>
+
+<main class="form-wrap">
+  <!--
+    HOW SUBMISSIONS REACH YOUR FRIEND:
+    This form posts to Formspree (a free form-backend service), which
+    emails every submission straight to your friend's inbox — no server
+    needed. Replace YOUR_FORM_ID below with the ID Formspree gives you.
+    Full setup steps are in README.md.
+  -->
+  <form id="quote-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+
+    <section class="form-section">
+      <h2>Kontaktdaten</h2>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="first-name">Vorname *</label>
+          <input type="text" id="first-name" name="Vorname" required>
+        </div>
+        <div class="field">
+          <label for="last-name">Nachname *</label>
+          <input type="text" id="last-name" name="Nachname" required>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="email">E-Mail *</label>
+          <input type="email" id="email" name="E-Mail" required>
+        </div>
+        <div class="field">
+          <label for="phone">Telefonnummer *</label>
+          <input type="tel" id="phone" name="Telefon" required>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="address">Adresse</label>
+        <input type="text" id="address" name="Adresse" placeholder="Straße, PLZ, Stadt">
+      </div>
+    </section>
+
+    <section class="form-section">
+      <h2>Fahrzeug</h2>
+
+      <div class="field">
+        <label for="brand">Fahrzeugmarke *</label>
+        <select id="brand" name="Fahrzeugmarke" required>
+          <option value="" disabled selected>Bitte wählen</option>
+          <option>Acura</option><option>Aston Martin</option><option>Audi</option>
+          <option>Bentley</option><option>BMW</option><option>Cadillac</option>
+          <option>Chevrolet</option><option>Chrysler</option><option>Dodge</option>
+          <option>Ferrari</option><option>Ford</option><option>GMC</option>
+          <option>Jaguar</option><option>Jeep</option><option>Lamborghini</option>
+          <option>Land Rover</option><option>Lexus</option><option>Maserati</option>
+          <option>McLaren</option><option>Mercedes-Benz</option><option>Porsche</option>
+          <option>Rolls-Royce</option><option>Tesla</option><option>Andere</option>
+        </select>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="model">Modell *</label>
+          <input type="text" id="model" name="Modell" placeholder="z. B. 3er, C-Klasse, Cayenne" required>
+        </div>
+        <div class="field">
+          <label for="year">Baujahr *</label>
+          <input type="number" id="year" name="Baujahr" min="1970" max="2027" placeholder="2022" required>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="vin">Fahrgestellnummer (VIN)</label>
+        <input type="text" id="vin" name="VIN">
+      </div>
+    </section>
+
+    <section class="form-section">
+      <h2>Gewünschte Leistung</h2>
+
+      <div class="field">
+        <label for="service">Service *</label>
+        <select id="service" name="Service" required>
+          <option value="" disabled selected>Bitte wählen</option>
+          <option value="Ambientenbeleuchtung">Ambientenbeleuchtung</option>
+          <option value="Sternenhimmel">Sternenhimmel</option>
+          <option value="Beides">Beides</option>
+        </select>
+      </div>
+
+      <!-- Ambient lighting options -->
+      <div id="ambient-options" class="conditional-group hidden">
+        <div class="field">
+          <label for="ambient-type">Art der Integration</label>
+          <select id="ambient-type" name="Ambiente – Integration">
+            <option value="">Bitte wählen</option>
+            <option>Originalgetreue OEM-Integration (BMW / Mercedes-Benz / Audi u. a.)</option>
+            <option>Individuelles Nachrüstsystem</option>
+            <option>Ich bin unsicher — bitte beraten</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="ambient-control">Steuerung</label>
+          <select id="ambient-control" name="Ambiente – Steuerung">
+            <option value="">Bitte wählen</option>
+            <option>Smartphone-App</option>
+            <option>Fahrzeugmenü (OEM)</option>
+            <option>Keine Präferenz</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Star headliner options -->
+      <div id="star-options" class="conditional-group hidden">
+        <div class="field">
+          <label for="star-count">Sternenanzahl</label>
+          <select id="star-count" name="Sternenhimmel – Sternenanzahl">
+            <option value="">Bitte wählen</option>
+            <option>400 Sterne</option><option>600 Sterne</option>
+            <option>800 Sterne</option><option>1200 Sterne</option>
+            <option>1600 Sterne</option><option>2000 Sterne</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="headliner-material">Dachhimmel-Material</label>
+          <select id="headliner-material" name="Sternenhimmel – Material">
+            <option value="">Bitte wählen</option>
+            <option>Original (Stock)</option><option>Vinyl</option>
+            <option>Alcantara</option><option>Ultrasuede</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="star-color">Farbauswahl</label>
+          <select id="star-color" name="Sternenhimmel – Farbe">
+            <option value="">Bitte wählen</option>
+            <option>Nur Weiß</option><option>RGBW (16 Farben)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Zusatzoptionen</label>
+          <div class="checkbox-grid">
+            <label class="checkbox"><input type="checkbox" name="Zusatzoptionen" value="Twinkle-Effekt"> Twinkle-Effekt</label>
+            <label class="checkbox"><input type="checkbox" name="Zusatzoptionen" value="Sternschnuppe"> Sternschnuppe</label>
+            <label class="checkbox"><input type="checkbox" name="Zusatzoptionen" value="Individuelles Logo"> Individuelles Logo</label>
+            <label class="checkbox"><input type="checkbox" name="Zusatzoptionen" value="Schiebedach"> Schiebedach-Integration</label>
+            <label class="checkbox"><input type="checkbox" name="Zusatzoptionen" value="Türverkleidung"> Türverkleidung</label>
+            <label class="checkbox"><input type="checkbox" name="Zusatzoptionen" value="Fußmatten"> Fußmatten</label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="form-section">
+      <h2>Terminwunsch</h2>
+      <div class="field-row">
+        <div class="field">
+          <label for="preferred-date">Bevorzugtes Datum *</label>
+          <input type="date" id="preferred-date" name="Bevorzugtes Datum" required>
+        </div>
+        <div class="field">
+          <label for="preferred-time">Bevorzugte Uhrzeit *</label>
+          <select id="preferred-time" name="Bevorzugte Uhrzeit" required>
+            <option value="" disabled selected>Bitte wählen</option>
+            <option>Vormittag (9–12 Uhr)</option>
+            <option>Mittag (12–15 Uhr)</option>
+            <option>Nachmittag (15–18 Uhr)</option>
+            <option>Nach Absprache</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <section class="form-section">
+      <h2>Foto vom Fahrzeug (optional)</h2>
+      <div class="field">
+        <label for="photo">Foto hochladen — max. 20 MB</label>
+        <input type="file" id="photo" name="Fahrzeugfoto" accept="image/*">
+      </div>
+    </section>
+
+    <section class="form-section">
+      <h2>Besondere Hinweise</h2>
+      <div class="field">
+        <textarea id="notes" name="Besondere Hinweise" rows="5" placeholder="Wünsche, Fragen oder Details zu Ihrem Projekt..."></textarea>
+      </div>
+    </section>
+
+    <button type="submit" class="btn-primary btn-submit">Anfrage senden</button>
+    <p id="form-status" class="form-status"></p>
+  </form>
+</main>
+
+<footer class="footer">
+  <img src="images/nv-works-logo.jpeg" alt="NV Works" class="footer-logo">
+  <p>© <span id="year"></span> NV Works — Ambientenbeleuchtung &amp; Sternenhimmel</p>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>
