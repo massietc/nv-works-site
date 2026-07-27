@@ -1,119 +1,383 @@
-// ==========================================================
-// NV Works — site script
-// 1) Starfield canvas animation (hero background)
-// 2) Show/hide service-specific form fields
-// 3) Submit the quote form to Formspree without a page reload
-// 4) Footer year
-// ==========================================================
+(() => {
+  "use strict";
 
-document.addEventListener('DOMContentLoaded', () => {
-  initStarfield();
-  initServiceToggle();
-  initFormSubmit();
-  initFooterYear();
-});
+  const header = document.querySelector(".header");
+  const button = document.querySelector(".menu-btn");
+  const nav = document.querySelector(".nav");
 
-/* ---------- 1) Starfield ---------- */
+  const closeMenu = () => {
+    if (!button || !nav) return;
 
-function initStarfield() {
-  const canvas = document.getElementById('starfield');
-  if (!canvas) return;
+    button.setAttribute("aria-expanded", "false");
+    nav.classList.remove("open");
+    document.body.classList.remove("menu-open");
+  };
 
-  const ctx = canvas.getContext('2d');
-  let stars = [];
-  let width, height;
+  if (button && nav) {
+    button.addEventListener("click", () => {
+      const open =
+        button.getAttribute("aria-expanded") === "true";
 
-  function resize() {
-    width = canvas.width = canvas.offsetWidth;
-    height = canvas.height = canvas.offsetHeight;
-    const count = Math.floor((width * height) / 6000);
-    stars = Array.from({ length: count }, () => ({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      r: Math.random() * 1.4 + 0.3,
-      phase: Math.random() * Math.PI * 2,
-      speed: Math.random() * 0.02 + 0.005
-    }));
+      button.setAttribute(
+        "aria-expanded",
+        String(!open)
+      );
+
+      nav.classList.toggle("open", !open);
+      document.body.classList.toggle("menu-open", !open);
+    });
+
+    nav.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", closeMenu);
+    });
+
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 820) {
+        closeMenu();
+      }
+    });
   }
 
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const updateHeader = () => {
+    if (!header) return;
 
-  function draw(t) {
-    ctx.clearRect(0, 0, width, height);
-    for (const s of stars) {
-      const twinkle = prefersReducedMotion ? 1 : 0.5 + 0.5 * Math.sin(t * s.speed + s.phase);
-      ctx.beginPath();
-      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(244, 244, 245, ${0.15 + twinkle * 0.65})`;
-      ctx.fill();
-    }
-    if (!prefersReducedMotion) requestAnimationFrame(draw);
+    header.classList.toggle(
+      "scrolled",
+      window.scrollY > 15
+    );
+  };
+
+  updateHeader();
+
+  window.addEventListener(
+    "scroll",
+    updateHeader,
+    { passive: true }
+  );
+
+  document
+    .querySelectorAll("[data-year]")
+    .forEach((element) => {
+      element.textContent =
+        new Date().getFullYear();
+    });
+
+  const revealElements =
+    document.querySelectorAll(".reveal");
+
+  if ("IntersectionObserver" in window) {
+    const observer =
+      new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          });
+        },
+        {
+          threshold: 0.12
+        }
+      );
+
+    revealElements.forEach((element) => {
+      observer.observe(element);
+    });
+  } else {
+    revealElements.forEach((element) => {
+      element.classList.add("visible");
+    });
   }
 
-  window.addEventListener('resize', resize);
-  resize();
-  requestAnimationFrame(draw);
-}
+  document
+    .querySelectorAll(".stars")
+    .forEach((canvas) => {
+      const context =
+        canvas.getContext("2d");
 
-/* ---------- 2) Conditional service fields ---------- */
+      if (!context) return;
 
-function initServiceToggle() {
-  const serviceSelect = document.getElementById('service');
-  if (!serviceSelect) return;
+      let width = 0;
+      let height = 0;
+      let stars = [];
 
-  const ambientGroup = document.getElementById('ambient-options');
-  const starGroup = document.getElementById('star-options');
+      const reducedMotion =
+        window.matchMedia(
+          "(prefers-reduced-motion: reduce)"
+        ).matches;
 
-  function update() {
-    const value = serviceSelect.value;
-    ambientGroup.classList.toggle('hidden', !(value === 'Ambientenbeleuchtung' || value === 'Beides'));
-    starGroup.classList.toggle('hidden', !(value === 'Sternenhimmel' || value === 'Beides'));
-  }
+      const resizeCanvas = () => {
+        const box =
+          canvas.getBoundingClientRect();
 
-  serviceSelect.addEventListener('change', update);
-  update();
-}
+        const ratio =
+          Math.min(
+            window.devicePixelRatio || 1,
+            2
+          );
 
-/* ---------- 3) Form submission (Formspree) ---------- */
+        width = box.width;
+        height = box.height;
 
-function initFormSubmit() {
-  const form = document.getElementById('quote-form');
+        canvas.width =
+          Math.max(1, width * ratio);
+
+        canvas.height =
+          Math.max(1, height * ratio);
+
+        context.setTransform(
+          ratio,
+          0,
+          0,
+          ratio,
+          0,
+          0
+        );
+
+        stars = Array.from(
+          {
+            length: Math.max(
+              65,
+              Math.floor(
+                width * height / 12000
+              )
+            )
+          },
+          () => ({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            radius:
+              Math.random() * 1.35 + 0.2,
+            opacity:
+              Math.random() * 0.7 + 0.15,
+            speed:
+              Math.random() * 0.002 + 0.0007,
+            phase:
+              Math.random() * Math.PI * 2
+          })
+        );
+      };
+
+      const drawStars = (time) => {
+        context.clearRect(
+          0,
+          0,
+          width,
+          height
+        );
+
+        stars.forEach((star) => {
+          const opacity =
+            reducedMotion
+              ? star.opacity
+              : star.opacity *
+                (
+                  0.65 +
+                  Math.sin(
+                    time * star.speed +
+                    star.phase
+                  ) *
+                  0.35
+                );
+
+          context.beginPath();
+
+          context.arc(
+            star.x,
+            star.y,
+            star.radius,
+            0,
+            Math.PI * 2
+          );
+
+          context.fillStyle =
+            `rgba(255,255,255,${
+              Math.max(0.08, opacity)
+            })`;
+
+          context.shadowBlur =
+            star.radius > 1 ? 7 : 2;
+
+          context.shadowColor = "white";
+
+          context.fill();
+        });
+
+        context.shadowBlur = 0;
+
+        if (!reducedMotion) {
+          window.requestAnimationFrame(
+            drawStars
+          );
+        }
+      };
+
+      resizeCanvas();
+      drawStars(0);
+
+      window.addEventListener(
+        "resize",
+        resizeCanvas
+      );
+    });
+
+  const form =
+    document.querySelector("#quoteForm");
+
   if (!form) return;
 
-  const status = document.getElementById('form-status');
+  const service =
+    form.querySelector("#service");
 
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    status.textContent = 'Wird gesendet...';
-    status.className = 'form-status';
+  const ambientPanel =
+    form.querySelector(
+      '[data-panel="ambient"]'
+    );
 
-    try {
-      const response = await fetch(form.action, {
-        method: 'POST',
-        body: new FormData(form),
-        headers: { 'Accept': 'application/json' }
+  const starlightPanel =
+    form.querySelector(
+      '[data-panel="starlight"]'
+    );
+
+  const formSections =
+    form.querySelectorAll(
+      ".form-section, .submit-area"
+    );
+
+  const successPanel =
+    form.querySelector(".success");
+
+  const resetButton =
+    form.querySelector("[data-reset]");
+
+  const dateInput =
+    form.querySelector("#date");
+
+  if (dateInput) {
+    const today =
+      new Date(
+        Date.now() -
+        new Date().getTimezoneOffset() *
+        60000
+      );
+
+    dateInput.min =
+      today
+        .toISOString()
+        .split("T")[0];
+  }
+
+  const showPanel = (
+    panel,
+    shouldShow
+  ) => {
+    if (!panel) return;
+
+    panel.hidden = !shouldShow;
+
+    panel
+      .querySelectorAll(
+        "input, select, textarea"
+      )
+      .forEach((field) => {
+        field.disabled = !shouldShow;
       });
+  };
 
-      if (response.ok) {
-        status.textContent = 'Vielen Dank! Ihre Anfrage wurde gesendet. Ich melde mich in Kürze bei Ihnen.';
-        status.className = 'form-status success';
-        form.reset();
-        document.getElementById('ambient-options').classList.add('hidden');
-        document.getElementById('star-options').classList.add('hidden');
-      } else {
-        status.textContent = 'Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut oder kontaktieren Sie mich direkt.';
-        status.className = 'form-status error';
+  const updatePanels = () => {
+    const selectedService =
+      service?.value || "";
+
+    showPanel(
+      ambientPanel,
+      selectedService === "ambient" ||
+      selectedService === "both"
+    );
+
+    showPanel(
+      starlightPanel,
+      selectedService === "starlight" ||
+      selectedService === "both"
+    );
+  };
+
+  const requestedService =
+    new URLSearchParams(
+      window.location.search
+    ).get("service");
+
+  if (
+    service &&
+    requestedService &&
+    [...service.options].some(
+      (option) =>
+        option.value === requestedService
+    )
+  ) {
+    service.value = requestedService;
+  }
+
+  service?.addEventListener(
+    "change",
+    updatePanels
+  );
+
+  updatePanels();
+
+  form.addEventListener(
+    "submit",
+    (event) => {
+      if (
+        form.dataset.mode === "live"
+      ) {
+        return;
       }
-    } catch (err) {
-      status.textContent = 'Netzwerkfehler. Bitte prüfen Sie Ihre Verbindung und versuchen Sie es erneut.';
-      status.className = 'form-status error';
+
+      event.preventDefault();
+
+      if (!form.reportValidity()) {
+        return;
+      }
+
+      formSections.forEach(
+        (section) => {
+          section.hidden = true;
+        }
+      );
+
+      if (successPanel) {
+        successPanel.hidden = false;
+
+        successPanel.scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+      }
     }
-  });
-}
+  );
 
-/* ---------- 4) Footer year ---------- */
+  resetButton?.addEventListener(
+    "click",
+    () => {
+      form.reset();
 
-function initFooterYear() {
-  const el = document.getElementById('year');
-  if (el) el.textContent = new Date().getFullYear();
-}
+      formSections.forEach(
+        (section) => {
+          section.hidden = false;
+        }
+      );
+
+      if (successPanel) {
+        successPanel.hidden = true;
+      }
+
+      updatePanels();
+
+      form.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    }
+  );
+})();
