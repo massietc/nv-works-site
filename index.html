@@ -10,12 +10,14 @@
 
   <meta
     name="description"
-    content="Fordern Sie ein persönliches Angebot für Ambientebeleuchtung oder einen individuellen Sternenhimmel von NV Works an."
+    content="NV Works – professionelle Ambientebeleuchtung und individuelle Sternenhimmel für Fahrzeuge."
   >
 
   <meta name="theme-color" content="#050506">
 
-  <title>Angebot anfragen | NV Works</title>
+  <title>
+    NV Works | Ambientebeleuchtung & Sternenhimmel
+  </title>
 
   <link
     rel="icon"
@@ -43,21 +45,22 @@
     :root {
       --black: #050506;
       --black-soft: #0a0a0c;
-      --panel: #111114;
-      --panel-light: #18181d;
-      --red: #df001c;
-      --red-bright: #ff2341;
-      --red-dark: #870011;
+      --panel: #101014;
+      --panel-light: #17171c;
+      --metal: #26262c;
+      --red: #dc001c;
+      --red-bright: #ff1f3d;
+      --red-dark: #74000e;
       --white: #ffffff;
-      --page: #f3f3f5;
-      --text: #17171a;
-      --muted: #6d6d75;
-      --muted-light: #a3a3ab;
-      --line-dark: rgba(255, 255, 255, 0.12);
-      --line-light: #dedee3;
-      --container: 1180px;
-      --header-height: 96px;
-      --radius: 28px;
+      --text: #f4f4f5;
+      --muted: #a0a0aa;
+      --muted-dark: #71717a;
+      --line: rgba(255, 255, 255, 0.11);
+      --line-strong: rgba(255, 255, 255, 0.22);
+      --container: 1220px;
+      --header-height: 84px;
+      --radius: 22px;
+      --shadow: 0 30px 90px rgba(0, 0, 0, 0.55);
     }
 
     * {
@@ -66,6 +69,7 @@
 
     html {
       scroll-behavior: smooth;
+      scroll-padding-top: 100px;
     }
 
     body {
@@ -73,7 +77,7 @@
       min-width: 320px;
       overflow-x: hidden;
       color: var(--text);
-      background: var(--page);
+      background: var(--black);
       font-family: "Inter", sans-serif;
     }
 
@@ -88,11 +92,6 @@
       font: inherit;
     }
 
-    button,
-    a {
-      -webkit-tap-highlight-color: transparent;
-    }
-
     a {
       color: inherit;
       text-decoration: none;
@@ -103,10 +102,6 @@
       max-width: 100%;
     }
 
-    [hidden] {
-      display: none !important;
-    }
-
     .container {
       width: min(
         calc(100% - 40px),
@@ -115,834 +110,50 @@
       margin-inline: auto;
     }
 
-    /* HEADER */
-
-    .site-header {
-      position: fixed;
-      inset: 0 0 auto;
-      z-index: 1000;
-      height: var(--header-height);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-      background: rgba(5, 5, 6, 0.94);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-    }
-
-    .header-inner {
-      height: 100%;
+    .section-label {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 30px;
-    }
-
-    .brand {
-      position: relative;
-      z-index: 1003;
-      width: 176px;
-      height: 86px;
-      display: flex;
-      align-items: center;
-      overflow: visible;
-    }
-
-    .brand img {
-      width: 170px;
-      max-width: none;
-      max-height: 82px;
-      object-fit: contain;
-      object-position: left center;
-      filter:
-        drop-shadow(0 8px 22px rgba(223, 0, 28, 0.2));
-    }
-
-    .desktop-nav {
-      display: flex;
-      align-items: center;
-      gap: 29px;
-    }
-
-    .desktop-nav > a {
-      position: relative;
-      color: #d0d0d5;
-      font-size: 0.86rem;
-      font-weight: 700;
-      transition: color 0.2s ease;
-    }
-
-    .desktop-nav > a:not(.nav-cta)::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 100%;
-      bottom: -9px;
-      height: 2px;
-      background: var(--red-bright);
-      transition: right 0.25s ease;
-    }
-
-    .desktop-nav > a:not(.nav-cta):hover {
-      color: var(--white);
-    }
-
-    .desktop-nav > a:not(.nav-cta):hover::after {
-      right: 0;
-    }
-
-    .nav-cta {
-      min-height: 44px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0 18px;
-      border: 1px solid rgba(255, 35, 65, 0.55);
-      border-radius: 999px;
-      color: var(--white) !important;
-      background: rgba(223, 0, 28, 0.1);
-    }
-
-    .nav-cta:hover {
-      background: var(--red);
-    }
-
-    /* MOBILE MENU BUTTON */
-
-    .menu-button {
-      position: relative;
-      z-index: 1003;
-      display: none;
-      width: 54px;
-      height: 54px;
-      flex: 0 0 auto;
-      border: 1px solid rgba(255, 255, 255, 0.22);
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.04);
-      cursor: pointer;
-    }
-
-    .menu-button span {
-      position: absolute;
-      left: 15px;
-      width: 23px;
-      height: 3px;
-      border-radius: 10px;
-      background: var(--white);
-      transition:
-        top 0.25s ease,
-        transform 0.25s ease,
-        opacity 0.25s ease;
-    }
-
-    .menu-button span:nth-child(1) {
-      top: 17px;
-    }
-
-    .menu-button span:nth-child(2) {
-      top: 25px;
-    }
-
-    .menu-button span:nth-child(3) {
-      top: 33px;
-    }
-
-    .menu-button[aria-expanded="true"] span:nth-child(1) {
-      top: 25px;
-      transform: rotate(45deg);
-    }
-
-    .menu-button[aria-expanded="true"] span:nth-child(2) {
-      opacity: 0;
-    }
-
-    .menu-button[aria-expanded="true"] span:nth-child(3) {
-      top: 25px;
-      transform: rotate(-45deg);
-    }
-
-    /* MOBILE MENU OVERLAY */
-
-    .mobile-menu {
-      position: fixed;
-      inset: 0;
-      z-index: 1001;
-      display: none;
-      flex-direction: column;
-      padding:
-        calc(var(--header-height) + 30px)
-        24px
-        40px;
-      overflow-y: auto;
-      opacity: 0;
-      visibility: hidden;
-      background:
-        radial-gradient(
-          circle at 92% 8%,
-          rgba(223, 0, 28, 0.28),
-          transparent 28%
-        ),
-        #050506;
-      transform: translateX(100%);
-      transition:
-        opacity 0.3s ease,
-        visibility 0.3s ease,
-        transform 0.3s ease;
-    }
-
-    .mobile-menu.open {
-      opacity: 1;
-      visibility: visible;
-      transform: translateX(0);
-    }
-
-    .mobile-menu-inner {
-      width: min(100%, 680px);
-      margin-inline: auto;
-    }
-
-    .mobile-menu-label {
+      gap: 12px;
       margin: 0 0 18px;
-      color: var(--red-bright);
+      color: #b5b5bd;
       font-family: "Orbitron", sans-serif;
       font-size: 0.68rem;
       font-weight: 700;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.19em;
       text-transform: uppercase;
     }
 
-    .mobile-menu-links {
-      display: grid;
-    }
-
-    .mobile-menu-links > a {
-      min-height: 76px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.14);
-      color: var(--white);
-      font-family: "Orbitron", sans-serif;
-      font-size: clamp(1.15rem, 5vw, 1.55rem);
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      text-transform: uppercase;
-    }
-
-    .mobile-menu-links > a::after {
-      content: "→";
-      color: var(--red-bright);
-      font-size: 1.2rem;
-    }
-
-    .mobile-menu-links > a:hover {
-      color: var(--red-bright);
-    }
-
-    .mobile-menu-cta {
-      min-height: 66px !important;
-      justify-content: center !important;
-      margin-top: 30px;
-      border: 1px solid var(--red-bright) !important;
-      border-radius: 999px;
-      background:
-        linear-gradient(
-          135deg,
-          var(--red-bright),
-          var(--red-dark)
-        );
-      box-shadow:
-        0 18px 38px rgba(223, 0, 28, 0.3);
-      font-size: 1rem !important;
-    }
-
-    .mobile-menu-cta::after {
-      display: none;
-    }
-
-    .mobile-menu-note {
-      margin: 28px 0 0;
-      color: #7f7f88;
-      font-size: 0.8rem;
-      line-height: 1.7;
-    }
-
-    /* HERO */
-
-    .quote-hero {
-      position: relative;
-      min-height: 640px;
-      display: flex;
-      align-items: flex-end;
-      overflow: hidden;
-      padding:
-        calc(var(--header-height) + 95px)
-        0
-        90px;
-      color: var(--white);
-      background:
-        radial-gradient(
-          circle at 90% 22%,
-          rgba(223, 0, 28, 0.22),
-          transparent 28%
-        ),
-        radial-gradient(
-          circle at 15% 90%,
-          rgba(223, 0, 28, 0.08),
-          transparent 27%
-        ),
-        linear-gradient(
-          135deg,
-          #050506,
-          #101014
-        );
-    }
-
-    .quote-hero::before {
+    .section-label::before {
       content: "";
-      position: absolute;
-      inset: 0;
-      opacity: 0.16;
-      background-image:
-        linear-gradient(
-          rgba(255, 255, 255, 0.045) 1px,
-          transparent 1px
-        ),
-        linear-gradient(
-          90deg,
-          rgba(255, 255, 255, 0.045) 1px,
-          transparent 1px
-        );
-      background-size: 70px 70px;
-      mask-image:
-        linear-gradient(
-          to bottom,
-          black,
-          transparent
-        );
+      width: 34px;
+      height: 2px;
+      background: var(--red);
+      box-shadow: 0 0 13px var(--red);
     }
 
-    .star-canvas {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0.48;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-    }
-
-    .back-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 55px;
-      color: #b6b6bd;
-      font-size: 0.88rem;
-      font-weight: 700;
-      transition: color 0.2s ease;
-    }
-
-    .back-link:hover {
-      color: var(--white);
-    }
-
-    .eyebrow {
-      margin: 0 0 22px;
-      color: var(--red-bright);
-      font-family: "Orbitron", sans-serif;
-      font-size: 0.74rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-    }
-
-    .quote-hero h1 {
-      max-width: 920px;
+    .section-title {
       margin: 0;
-      font-size: clamp(3.4rem, 7vw, 7rem);
-      line-height: 0.96;
-      letter-spacing: -0.065em;
-      text-wrap: balance;
+      max-width: 800px;
+      font-size: clamp(2.3rem, 5vw, 4.8rem);
+      line-height: 0.98;
+      letter-spacing: -0.055em;
     }
 
-    .hero-description {
-      max-width: 760px;
-      margin: 30px 0 0;
-      color: #b7b7bf;
-      font-size: clamp(1rem, 1.7vw, 1.25rem);
+    .section-title span {
+      color: var(--red-bright);
+    }
+
+    .section-description {
+      max-width: 610px;
+      margin: 22px 0 0;
+      color: var(--muted);
+      font-size: 1rem;
       line-height: 1.75;
     }
 
-    /* FORM AREA */
-
-    .form-area {
-      padding: 110px 0 130px;
-      background:
-        linear-gradient(
-          180deg,
-          #f5f5f6,
-          #eeeeef
-        );
-    }
-
-    .form-layout {
-      display: grid;
-      grid-template-columns:
-        320px minmax(0, 1fr);
-      gap: 30px;
-      align-items: start;
-    }
-
-    /* FORM SIDEBAR */
-
-    .form-sidebar {
-      position: sticky;
-      top: calc(var(--header-height) + 25px);
-      overflow: hidden;
-      padding: 34px;
-      border-radius: var(--radius);
-      color: var(--white);
-      background:
-        radial-gradient(
-          circle at 100% 0,
-          rgba(223, 0, 28, 0.25),
-          transparent 38%
-        ),
-        linear-gradient(
-          145deg,
-          #111114,
-          #050506
-        );
-      box-shadow:
-        0 28px 75px rgba(10, 10, 12, 0.18);
-    }
-
-    .form-sidebar::after {
-      content: "";
-      position: absolute;
-      right: -90px;
-      bottom: -90px;
-      width: 220px;
-      height: 220px;
-      border: 1px solid rgba(255, 35, 65, 0.2);
-      border-radius: 50%;
-      box-shadow:
-        0 0 0 30px rgba(255, 35, 65, 0.025),
-        0 0 0 60px rgba(255, 35, 65, 0.018);
-    }
-
-    .sidebar-label {
-      position: relative;
-      z-index: 2;
-      margin: 0 0 25px;
-      color: var(--red-bright);
-      font-family: "Orbitron", sans-serif;
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-    }
-
-    .form-sidebar h2 {
-      position: relative;
-      z-index: 2;
-      margin: 0 0 35px;
-      font-size: 1.75rem;
-      line-height: 1.15;
-      letter-spacing: -0.035em;
-    }
-
-    .sidebar-step {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      gap: 14px;
-      padding: 19px 0;
-      border-top: 1px solid var(--line-dark);
-    }
-
-    .sidebar-step > span {
-      color: var(--red-bright);
-      font-family: "Orbitron", sans-serif;
-      font-size: 0.72rem;
-      font-weight: 700;
-    }
-
-    .sidebar-step strong,
-    .sidebar-step small {
-      display: block;
-    }
-
-    .sidebar-step strong {
-      font-size: 0.88rem;
-    }
-
-    .sidebar-step small {
-      margin-top: 3px;
-      color: #85858e;
-      font-size: 0.73rem;
-    }
-
-    .sidebar-note {
-      position: relative;
-      z-index: 2;
-      margin: 28px 0 0;
-      padding: 17px;
-      border: 1px solid rgba(255, 35, 65, 0.24);
-      border-radius: 15px;
-      color: #a2a2ab;
-      background: rgba(223, 0, 28, 0.07);
-      font-size: 0.76rem;
-      line-height: 1.65;
-    }
-
-    .sidebar-note strong {
-      color: #ff667a;
-    }
-
-    /* FORM BOX */
-
-    .form-box {
-      overflow: hidden;
-      border: 1px solid var(--line-light);
-      border-radius: var(--radius);
-      background: var(--white);
-      box-shadow:
-        0 30px 85px rgba(19, 19, 22, 0.1);
-    }
-
-    .preview-banner {
-      margin: 0;
-      padding: 16px 32px;
-      border-bottom: 1px solid #ffd0d7;
-      color: #71313a;
-      background: #fff2f4;
-      font-size: 0.8rem;
-      line-height: 1.55;
-    }
-
-    .preview-banner strong {
-      display: inline-block;
-      margin-right: 6px;
-      color: var(--red-dark);
-    }
-
-    .form-section {
-      padding: 50px;
-      border-bottom: 1px solid #e7e7eb;
-    }
-
-    .form-section-title {
-      display: flex;
-      align-items: flex-start;
-      gap: 17px;
-      margin-bottom: 35px;
-    }
-
-    .form-section-title > span {
-      width: 43px;
-      height: 43px;
-      flex: 0 0 auto;
-      display: grid;
-      place-items: center;
-      border-radius: 50%;
-      color: var(--white);
-      background:
-        linear-gradient(
-          135deg,
-          var(--red-bright),
-          var(--red-dark)
-        );
-      box-shadow:
-        0 10px 25px rgba(223, 0, 28, 0.2);
-      font-family: "Orbitron", sans-serif;
-      font-size: 0.7rem;
-      font-weight: 700;
-    }
-
-    .form-section-title h2 {
-      margin: 0;
-      font-size: 1.65rem;
-      line-height: 1.1;
-      letter-spacing: -0.035em;
-    }
-
-    .form-section-title p {
-      margin: 6px 0 0;
-      color: #77777f;
-      font-size: 0.86rem;
-    }
-
-    .fields {
-      display: grid;
-      grid-template-columns:
-        repeat(2, minmax(0, 1fr));
-      gap: 23px;
-    }
-
-    .field {
-      display: block;
-      min-width: 0;
-      color: #29292e;
-      font-size: 0.8rem;
-      font-weight: 800;
-    }
-
-    .field.full {
-      grid-column: 1 / -1;
-    }
-
-    .field em,
-    .consent em {
-      color: var(--red);
-      font-style: normal;
-    }
-
-    .field input,
-    .field select,
-    .field textarea {
-      width: 100%;
-      margin-top: 9px;
-      border: 1px solid #d7d7dc;
-      border-radius: 14px;
-      outline: none;
-      color: #202024;
-      background: #fafafa;
-      transition:
-        border-color 0.2s ease,
-        background 0.2s ease,
-        box-shadow 0.2s ease;
-    }
-
-    .field input,
-    .field select {
-      height: 57px;
-      padding: 0 17px;
-    }
-
-    .field textarea {
-      min-height: 175px;
-      padding: 16px 17px;
-      resize: vertical;
-      line-height: 1.6;
-    }
-
-    .field input::placeholder,
-    .field textarea::placeholder {
-      color: #a0a0a8;
-    }
-
-    .field input:focus,
-    .field select:focus,
-    .field textarea:focus {
-      border-color: var(--red);
-      background: var(--white);
-      box-shadow:
-        0 0 0 4px rgba(223, 0, 28, 0.08);
-    }
-
-    /* CONDITIONAL OPTIONS */
-
-    .options-panel {
-      margin-top: 28px;
-      padding: 27px;
-      border: 1px solid #dfdfe4;
-      border-radius: 19px;
-      background: #f7f7f8;
-    }
-
-    .options-panel > h3 {
-      margin: 0 0 24px;
-      font-size: 1.1rem;
-    }
-
-    .choice-field {
-      margin: 25px 0 0;
-      padding: 0;
-      border: 0;
-    }
-
-    .choice-field legend {
-      margin-bottom: 10px;
-      color: #29292e;
-      font-size: 0.8rem;
-      font-weight: 800;
-    }
-
-    .choices {
-      display: grid;
-      grid-template-columns:
-        repeat(2, minmax(0, 1fr));
-      gap: 10px;
-    }
-
-    .choice {
-      min-height: 52px;
-      display: flex;
-      align-items: center;
-      padding: 11px 14px;
-      border: 1px solid #d9d9df;
-      border-radius: 12px;
-      color: #4c4c53;
-      background: var(--white);
-      font-size: 0.8rem;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    .choice input {
-      width: 18px;
-      height: 18px;
-      flex: 0 0 auto;
-      margin: 0 9px 0 0;
-      accent-color: var(--red);
-    }
-
-    /* SUBMIT */
-
-    .submit-area {
-      padding: 45px 50px 50px;
-    }
-
-    .consent {
-      display: flex;
-      align-items: flex-start;
-      gap: 13px;
-      max-width: 790px;
-      color: #66666e;
-      font-size: 0.82rem;
-      line-height: 1.6;
-      cursor: pointer;
-    }
-
-    .consent input {
-      width: 19px;
-      height: 19px;
-      flex: 0 0 auto;
-      margin-top: 3px;
-      accent-color: var(--red);
-    }
-
-    .submit-button {
-      width: min(100%, 350px);
-      min-height: 62px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 14px;
-      margin-top: 29px;
-      border: 0;
-      border-radius: 999px;
-      color: var(--white);
-      background:
-        linear-gradient(
-          135deg,
-          #ed3040,
-          #9d171c
-        );
-      box-shadow:
-        0 18px 40px rgba(223, 0, 28, 0.22);
-      font-size: 1rem;
-      font-weight: 800;
-      cursor: pointer;
-      transition:
-        transform 0.22s ease,
-        box-shadow 0.22s ease;
-    }
-
-    .submit-button:hover {
-      transform: translateY(-2px);
-      box-shadow:
-        0 23px 48px rgba(223, 0, 28, 0.32);
-    }
-
-    .submit-note {
-      margin: 14px 0 0;
-      color: #96969e;
-      font-size: 0.74rem;
-    }
-
-    /* SUCCESS */
-
-    .success-panel {
-      padding: 85px 45px;
-      text-align: center;
-    }
-
-    .success-icon {
-      width: 70px;
-      height: 70px;
-      display: grid;
-      place-items: center;
-      margin: 0 auto 24px;
-      border-radius: 50%;
-      color: var(--white);
-      background:
-        linear-gradient(
-          135deg,
-          var(--red-bright),
-          var(--red-dark)
-        );
-      box-shadow:
-        0 15px 35px rgba(223, 0, 28, 0.25);
-      font-size: 1.5rem;
-      font-weight: 900;
-    }
-
-    .success-panel h2 {
-      margin: 0;
-      font-size: 2rem;
-      letter-spacing: -0.04em;
-    }
-
-    .success-panel p {
-      max-width: 650px;
-      margin: 16px auto 28px;
-      color: #6b6b73;
-      line-height: 1.7;
-    }
-
-    .reset-button {
-      min-height: 54px;
-      padding: 0 23px;
-      border: 1px solid #d5d5da;
-      border-radius: 999px;
-      color: #2f2f34;
-      background: #f7f7f8;
-      font-weight: 800;
-      cursor: pointer;
-    }
-
-    /* FOOTER */
-
-    .site-footer {
-      padding: 30px 0;
-      color: #85858e;
-      background: #050506;
-    }
-
-    .footer-bottom {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 25px;
-      padding-top: 24px;
-      border-top: 1px solid var(--line-dark);
-      font-size: 0.8rem;
-    }
-
-    .footer-bottom a:hover {
-      color: var(--white);
-    }
-
-    /* ANIMATIONS */
-
     .reveal {
       opacity: 0;
-      transform: translateY(25px);
+      transform: translateY(28px);
       transition:
         opacity 0.75s ease,
         transform 0.75s ease;
@@ -953,23 +164,1554 @@
       transform: translateY(0);
     }
 
-    /* TABLET */
+    /* HEADER */
 
-    @media (max-width: 1000px) {
-      .form-layout {
-        grid-template-columns: 1fr;
+    .site-header {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 100;
+      height: var(--header-height);
+      border-bottom: 1px solid transparent;
+      background: rgba(5, 5, 6, 0.68);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      transition:
+        background 0.3s ease,
+        border-color 0.3s ease;
+    }
+
+    .site-header.scrolled {
+      border-color: var(--line);
+      background: rgba(5, 5, 6, 0.94);
+    }
+
+    .nav-inner {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .brand {
+      position: relative;
+      z-index: 102;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-image {
+      width: 140px;
+      max-height: 62px;
+      object-fit: contain;
+      filter:
+        drop-shadow(0 0 1px rgba(255, 255, 255, 0.55))
+        drop-shadow(0 8px 20px rgba(220, 0, 28, 0.18));
+    }
+
+    .brand-fallback {
+      display: none;
+      align-items: center;
+      gap: 7px;
+      color: var(--white);
+      font-family: "Orbitron", sans-serif;
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+    }
+
+    .brand-fallback strong {
+      color: var(--red-bright);
+    }
+
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: 31px;
+    }
+
+    .main-nav > a {
+      position: relative;
+      color: #ccccd2;
+      font-size: 0.86rem;
+      font-weight: 700;
+      transition: color 0.2s ease;
+    }
+
+    .main-nav > a:not(.nav-cta)::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 100%;
+      bottom: -9px;
+      height: 2px;
+      background: var(--red-bright);
+      transition: right 0.25s ease;
+    }
+
+    .main-nav > a:not(.nav-cta):hover {
+      color: var(--white);
+    }
+
+    .main-nav > a:not(.nav-cta):hover::after {
+      right: 0;
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      min-height: 44px;
+      align-items: center;
+      padding: 0 19px;
+      border: 1px solid rgba(255, 31, 61, 0.55);
+      clip-path: polygon(
+        10px 0,
+        100% 0,
+        100% calc(100% - 10px),
+        calc(100% - 10px) 100%,
+        0 100%,
+        0 10px
+      );
+      color: var(--white) !important;
+      background: rgba(220, 0, 28, 0.1);
+    }
+
+    .nav-cta:hover {
+      background: var(--red);
+    }
+
+    .menu-button {
+      position: relative;
+      z-index: 102;
+      display: none;
+      width: 48px;
+      height: 46px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.04);
+      cursor: pointer;
+    }
+
+    .menu-button span {
+      position: absolute;
+      left: 13px;
+      width: 21px;
+      height: 2px;
+      background: var(--white);
+      transition:
+        top 0.25s ease,
+        transform 0.25s ease,
+        opacity 0.25s ease;
+    }
+
+    .menu-button span:nth-child(1) {
+      top: 14px;
+    }
+
+    .menu-button span:nth-child(2) {
+      top: 21px;
+    }
+
+    .menu-button span:nth-child(3) {
+      top: 28px;
+    }
+
+    .menu-button[aria-expanded="true"] span:nth-child(1) {
+      top: 21px;
+      transform: rotate(45deg);
+    }
+
+    .menu-button[aria-expanded="true"] span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-button[aria-expanded="true"] span:nth-child(3) {
+      top: 21px;
+      transform: rotate(-45deg);
+    }
+
+    /* BUTTONS */
+
+    .button {
+      display: inline-flex;
+      min-height: 55px;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      padding: 0 25px;
+      border: 1px solid transparent;
+      font-family: "Orbitron", sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-3px);
+    }
+
+    .button-primary {
+      clip-path: polygon(
+        12px 0,
+        100% 0,
+        100% calc(100% - 12px),
+        calc(100% - 12px) 100%,
+        0 100%,
+        0 12px
+      );
+      color: var(--white);
+      background:
+        linear-gradient(
+          135deg,
+          var(--red-bright),
+          var(--red-dark)
+        );
+      box-shadow:
+        0 18px 38px rgba(220, 0, 28, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.24);
+    }
+
+    .button-primary:hover {
+      box-shadow:
+        0 23px 48px rgba(220, 0, 28, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.24);
+    }
+
+    .button-secondary {
+      color: var(--white);
+      border-color: var(--line-strong);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .button-secondary:hover {
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    /* HERO */
+
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      padding:
+        calc(var(--header-height) + 75px)
+        0
+        75px;
+      overflow: hidden;
+      isolation: isolate;
+      background:
+        radial-gradient(
+          circle at 12% 28%,
+          rgba(220, 0, 28, 0.14),
+          transparent 29%
+        ),
+        radial-gradient(
+          circle at 90% 76%,
+          rgba(220, 0, 28, 0.1),
+          transparent 28%
+        ),
+        linear-gradient(
+          135deg,
+          #050506 0%,
+          #08080a 58%,
+          #030304 100%
+        );
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -4;
+      opacity: 0.16;
+      background-image:
+        linear-gradient(
+          rgba(255, 255, 255, 0.04) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          rgba(255, 255, 255, 0.04) 1px,
+          transparent 1px
+        );
+      background-size: 72px 72px;
+      mask-image:
+        linear-gradient(
+          to bottom,
+          black,
+          transparent 92%
+        );
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -90px;
+      top: 10%;
+      z-index: -3;
+      width: 54%;
+      height: 76%;
+      border: 1px solid rgba(255, 31, 61, 0.13);
+      transform: skewX(-12deg);
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.035),
+          transparent 50%
+        );
+    }
+
+    .star-canvas {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      width: 100%;
+      height: 100%;
+      opacity: 0.5;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns:
+        minmax(0, 0.9fr)
+        minmax(480px, 1.1fr);
+      gap: 62px;
+      align-items: center;
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 4;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      margin-bottom: 26px;
+      color: #c5c5cc;
+      font-family: "Orbitron", sans-serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.17em;
+      text-transform: uppercase;
+    }
+
+    .hero-badge i {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--red-bright);
+      box-shadow:
+        0 0 18px var(--red-bright);
+    }
+
+    .hero h1 {
+      margin: 0;
+      max-width: 760px;
+      font-family: "Orbitron", sans-serif;
+      font-size: clamp(3rem, 5.7vw, 6.3rem);
+      line-height: 0.95;
+      letter-spacing: -0.055em;
+      text-transform: uppercase;
+    }
+
+    .hero h1 span {
+      display: block;
+      color: transparent;
+      background:
+        linear-gradient(
+          90deg,
+          #ff526b,
+          var(--red) 62%,
+          #83000f
+        );
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    .hero-description {
+      max-width: 650px;
+      margin: 29px 0 0;
+      color: #b2b2ba;
+      font-size: 1.03rem;
+      line-height: 1.75;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+      margin-top: 35px;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+      margin-top: 58px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero-stat {
+      padding: 18px 17px 18px 0;
+    }
+
+    .hero-stat + .hero-stat {
+      padding-left: 20px;
+      border-left: 1px solid var(--line);
+    }
+
+    .hero-stat strong,
+    .hero-stat span {
+      display: block;
+    }
+
+    .hero-stat strong {
+      color: var(--white);
+      font-family: "Orbitron", sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .hero-stat span {
+      margin-top: 4px;
+      color: var(--muted-dark);
+      font-size: 0.73rem;
+    }
+
+    /* COCKPIT VISUAL */
+
+    .cockpit {
+      position: relative;
+      min-height: 600px;
+      perspective: 1200px;
+    }
+
+    .cockpit-frame {
+      position: absolute;
+      inset: 25px 0 0;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      clip-path: polygon(
+        12% 0,
+        100% 0,
+        100% 88%,
+        88% 100%,
+        0 100%,
+        0 15%
+      );
+      background:
+        radial-gradient(
+          circle at 50% 17%,
+          rgba(255, 255, 255, 0.05),
+          transparent 30%
+        ),
+        linear-gradient(
+          160deg,
+          #18181d 0%,
+          #0b0b0e 45%,
+          #050506 100%
+        );
+      box-shadow:
+        var(--shadow),
+        inset 0 1px 0 rgba(255, 255, 255, 0.13);
+      transform: rotateY(-5deg);
+    }
+
+    .cockpit-frame::before {
+      content: "";
+      position: absolute;
+      inset: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.055);
+      clip-path: polygon(
+        11% 0,
+        100% 0,
+        100% 88%,
+        88% 100%,
+        0 100%,
+        0 15%
+      );
+    }
+
+    .windshield {
+      position: absolute;
+      top: 4%;
+      left: 10%;
+      width: 80%;
+      height: 42%;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 48% 48% 20% 20% / 55% 55% 15% 15%;
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(255, 255, 255, 0.06),
+          transparent 58%
+        ),
+        #070709;
+      box-shadow:
+        inset 0 -30px 55px rgba(0, 0, 0, 0.75);
+    }
+
+    .windshield::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(
+          115deg,
+          transparent 30%,
+          rgba(255, 255, 255, 0.055) 44%,
+          transparent 58%
+        );
+    }
+
+    .windshield-stars {
+      position: absolute;
+      inset: 0;
+    }
+
+    .windshield-stars span {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: #ffffff;
+      box-shadow:
+        0 0 8px #ffffff;
+      animation:
+        twinkle 2.4s ease-in-out infinite;
+    }
+
+    .windshield-stars span:nth-child(1) {
+      top: 18%;
+      left: 14%;
+    }
+
+    .windshield-stars span:nth-child(2) {
+      top: 27%;
+      left: 26%;
+      animation-delay: -0.6s;
+    }
+
+    .windshield-stars span:nth-child(3) {
+      top: 14%;
+      left: 42%;
+      animation-delay: -1.1s;
+    }
+
+    .windshield-stars span:nth-child(4) {
+      top: 33%;
+      left: 56%;
+      animation-delay: -0.2s;
+    }
+
+    .windshield-stars span:nth-child(5) {
+      top: 17%;
+      left: 70%;
+      animation-delay: -1.7s;
+    }
+
+    .windshield-stars span:nth-child(6) {
+      top: 38%;
+      left: 81%;
+      animation-delay: -0.9s;
+    }
+
+    .windshield-stars span:nth-child(7) {
+      top: 52%;
+      left: 18%;
+      animation-delay: -1.4s;
+    }
+
+    .windshield-stars span:nth-child(8) {
+      top: 59%;
+      left: 35%;
+      animation-delay: -0.3s;
+    }
+
+    .windshield-stars span:nth-child(9) {
+      top: 50%;
+      left: 49%;
+      animation-delay: -1.9s;
+    }
+
+    .windshield-stars span:nth-child(10) {
+      top: 65%;
+      left: 64%;
+      animation-delay: -0.7s;
+    }
+
+    .windshield-stars span:nth-child(11) {
+      top: 54%;
+      left: 77%;
+      animation-delay: -1.2s;
+    }
+
+    .windshield-stars span:nth-child(12) {
+      top: 74%;
+      left: 87%;
+      animation-delay: -0.4s;
+    }
+
+    @keyframes twinkle {
+      0%,
+      100% {
+        opacity: 0.2;
+        transform: scale(0.7);
       }
 
-      .form-sidebar {
-        position: static;
+      50% {
+        opacity: 1;
+        transform: scale(1.5);
       }
     }
 
-    /* MOBILE */
+    .dashboard {
+      position: absolute;
+      left: 4%;
+      right: 4%;
+      bottom: 4%;
+      height: 53%;
+      border-radius: 48% 48% 8% 8% / 28% 28% 8% 8%;
+      background:
+        linear-gradient(
+          175deg,
+          #26262c 0%,
+          #111114 23%,
+          #08080a 61%,
+          #050506 100%
+        );
+      box-shadow:
+        inset 0 6px 10px rgba(255, 255, 255, 0.04),
+        0 -15px 45px rgba(0, 0, 0, 0.65);
+    }
+
+    .dashboard::before {
+      content: "";
+      position: absolute;
+      top: 27%;
+      left: 7%;
+      right: 7%;
+      height: 5px;
+      border-radius: 20px;
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          #ff1738 12%,
+          #ff1738 88%,
+          transparent
+        );
+      box-shadow:
+        0 0 9px #ff1738,
+        0 0 26px rgba(255, 23, 56, 0.75),
+        0 12px 35px rgba(255, 23, 56, 0.45);
+    }
+
+    .dashboard::after {
+      content: "";
+      position: absolute;
+      top: 37%;
+      left: 9%;
+      right: 9%;
+      height: 2px;
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.22),
+          transparent
+        );
+    }
+
+    .steering-wheel {
+      position: absolute;
+      left: 18%;
+      bottom: 6%;
+      width: 180px;
+      height: 180px;
+      border: 16px solid #1f1f24;
+      border-radius: 50%;
+      box-shadow:
+        inset 0 0 0 2px rgba(255, 255, 255, 0.07),
+        0 20px 35px rgba(0, 0, 0, 0.5);
+    }
+
+    .steering-wheel::before,
+    .steering-wheel::after {
+      content: "";
+      position: absolute;
+      background: #242429;
+    }
+
+    .steering-wheel::before {
+      top: 73px;
+      left: 20px;
+      width: 108px;
+      height: 26px;
+      transform: rotate(-10deg);
+    }
+
+    .steering-wheel::after {
+      top: 49px;
+      left: 63px;
+      width: 27px;
+      height: 92px;
+    }
+
+    .steering-center {
+      position: absolute;
+      inset: 47px;
+      z-index: 2;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      color: var(--white);
+      background:
+        linear-gradient(
+          145deg,
+          #2d2d33,
+          #0c0c0f
+        );
+      font-family: "Orbitron", sans-serif;
+      font-size: 0.85rem;
+      font-weight: 800;
+    }
+
+    .center-console {
+      position: absolute;
+      right: 17%;
+      bottom: 3%;
+      width: 190px;
+      height: 230px;
+      clip-path: polygon(
+        15% 0,
+        85% 0,
+        100% 100%,
+        0 100%
+      );
+      background:
+        linear-gradient(
+          155deg,
+          #27272d,
+          #0b0b0d 58%,
+          #050506
+        );
+      box-shadow:
+        0 18px 40px rgba(0, 0, 0, 0.45);
+    }
+
+    .center-console::before {
+      content: "";
+      position: absolute;
+      top: 22px;
+      left: 33px;
+      width: 124px;
+      height: 76px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background:
+        radial-gradient(
+          circle,
+          rgba(255, 23, 56, 0.25),
+          transparent 66%
+        ),
+        #070709;
+    }
+
+    .center-console::after {
+      content: "";
+      position: absolute;
+      left: 28px;
+      right: 28px;
+      bottom: 43px;
+      height: 4px;
+      background: var(--red-bright);
+      box-shadow:
+        0 0 15px var(--red-bright);
+    }
+
+    .door-light {
+      position: absolute;
+      right: 1%;
+      top: 47%;
+      width: 38%;
+      height: 4px;
+      transform: rotate(-12deg);
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          var(--red-bright)
+        );
+      box-shadow:
+        0 0 10px var(--red-bright),
+        0 0 28px rgba(255, 31, 61, 0.65);
+    }
+
+    .hero-logo-badge {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      z-index: 4;
+      width: min(270px, 44%);
+      transform: translate(-50%, -30%);
+      filter:
+        drop-shadow(0 0 2px rgba(255, 255, 255, 0.45))
+        drop-shadow(0 20px 30px rgba(220, 0, 28, 0.22));
+    }
+
+    .visual-label {
+      position: absolute;
+      z-index: 6;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 15px;
+      border: 1px solid var(--line);
+      background: rgba(8, 8, 10, 0.87);
+      backdrop-filter: blur(12px);
+    }
+
+    .visual-label strong,
+    .visual-label small {
+      display: block;
+    }
+
+    .visual-label strong {
+      font-family: "Orbitron", sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .visual-label small {
+      margin-top: 2px;
+      color: var(--muted-dark);
+      font-size: 0.65rem;
+    }
+
+    .visual-label i {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--red-bright);
+      box-shadow:
+        0 0 12px var(--red-bright);
+    }
+
+    .visual-label-one {
+      top: 64px;
+      right: -18px;
+    }
+
+    .visual-label-two {
+      left: -25px;
+      bottom: 50px;
+    }
+
+    /* BRAND STRIP */
+
+    .brand-strip {
+      position: relative;
+      overflow: hidden;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: #08080a;
+    }
+
+    .brand-strip::before,
+    .brand-strip::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      z-index: 2;
+      width: 90px;
+      pointer-events: none;
+    }
+
+    .brand-strip::before {
+      left: 0;
+      background:
+        linear-gradient(
+          90deg,
+          #08080a,
+          transparent
+        );
+    }
+
+    .brand-strip::after {
+      right: 0;
+      background:
+        linear-gradient(
+          -90deg,
+          #08080a,
+          transparent
+        );
+    }
+
+    .brand-track {
+      display: flex;
+      width: max-content;
+      animation:
+        brandScroll 35s linear infinite;
+    }
+
+    .brand-track span {
+      display: flex;
+      min-height: 84px;
+      align-items: center;
+      padding: 0 30px;
+      border-right: 1px solid var(--line);
+      color: #85858e;
+      font-family: "Orbitron", sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    @keyframes brandScroll {
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* SERVICES */
+
+    .services-section {
+      position: relative;
+      padding: 125px 0;
+      overflow: hidden;
+      background:
+        radial-gradient(
+          circle at 88% 10%,
+          rgba(220, 0, 28, 0.08),
+          transparent 24%
+        ),
+        #0a0a0c;
+    }
+
+    .services-heading {
+      display: grid;
+      grid-template-columns:
+        minmax(0, 1fr)
+        minmax(320px, 0.58fr);
+      gap: 70px;
+      align-items: end;
+      margin-bottom: 64px;
+    }
+
+    .services-heading > p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .service-layout {
+      display: grid;
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .service-panel {
+      position: relative;
+      min-height: 610px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(
+          145deg,
+          #17171c,
+          #09090b 65%
+        );
+      box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.28);
+    }
+
+    .service-panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(
+          115deg,
+          transparent 30%,
+          rgba(255, 255, 255, 0.025) 48%,
+          transparent 60%
+        );
+      pointer-events: none;
+    }
+
+    .service-panel-top {
+      position: relative;
+      min-height: 255px;
+      overflow: hidden;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .ambient-visual {
+      background:
+        radial-gradient(
+          circle at 50% 110%,
+          rgba(255, 31, 61, 0.35),
+          transparent 52%
+        ),
+        linear-gradient(
+          160deg,
+          #1c1c21,
+          #09090b
+        );
+    }
+
+    .ambient-dashboard {
+      position: absolute;
+      left: 5%;
+      right: 5%;
+      bottom: -35px;
+      height: 175px;
+      border-radius: 50% 50% 0 0 / 35% 35% 0 0;
+      background:
+        linear-gradient(
+          180deg,
+          #28282e,
+          #0d0d10
+        );
+      box-shadow:
+        inset 0 5px 8px rgba(255, 255, 255, 0.04);
+    }
+
+    .ambient-dashboard::after {
+      content: "";
+      position: absolute;
+      top: 47px;
+      left: 7%;
+      right: 7%;
+      height: 5px;
+      border-radius: 20px;
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          #ff1f3d 12%,
+          #ff1f3d 88%,
+          transparent
+        );
+      box-shadow:
+        0 0 10px #ff1f3d,
+        0 0 32px rgba(255, 31, 61, 0.7);
+    }
+
+    .starlight-visual {
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(255, 255, 255, 0.045),
+          transparent 58%
+        ),
+        #070709;
+    }
+
+    .service-stars {
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(
+          circle,
+          white 0 1px,
+          transparent 1.5px
+        );
+      background-size: 32px 27px;
+      opacity: 0.55;
+      transform: perspective(500px) rotateX(9deg);
+    }
+
+    .service-stars::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(
+          circle,
+          white 0 1.5px,
+          transparent 2px
+        );
+      background-position: 17px 12px;
+      background-size: 48px 41px;
+      opacity: 0.65;
+    }
+
+    .service-number {
+      position: absolute;
+      top: 24px;
+      left: 27px;
+      z-index: 2;
+      color: var(--red-bright);
+      font-family: "Orbitron", sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+    }
+
+    .service-name {
+      position: absolute;
+      right: 27px;
+      bottom: 24px;
+      z-index: 2;
+      color: rgba(255, 255, 255, 0.2);
+      font-family: "Orbitron", sans-serif;
+      font-size: clamp(1.6rem, 3vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+    }
+
+    .service-content {
+      position: relative;
+      z-index: 2;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 34px;
+    }
+
+    .service-content h3 {
+      margin: 0;
+      font-family: "Orbitron", sans-serif;
+      font-size: clamp(1.5rem, 2.4vw, 2.4rem);
+      line-height: 1.05;
+      text-transform: uppercase;
+    }
+
+    .service-content > p {
+      margin: 18px 0 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .spec-list {
+      display: grid;
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin: 29px 0 35px;
+    }
+
+    .spec-list span {
+      position: relative;
+      min-height: 45px;
+      display: flex;
+      align-items: center;
+      padding: 10px 12px 10px 29px;
+      border: 1px solid var(--line);
+      color: #c7c7ce;
+      background: rgba(255, 255, 255, 0.025);
+      font-size: 0.75rem;
+      font-weight: 650;
+    }
+
+    .spec-list span::before {
+      content: "";
+      position: absolute;
+      left: 12px;
+      width: 7px;
+      height: 7px;
+      background: var(--red-bright);
+      box-shadow:
+        0 0 9px var(--red-bright);
+    }
+
+    .service-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      margin-top: auto;
+      color: var(--red-bright);
+      font-family: "Orbitron", sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .service-link span {
+      transition: transform 0.2s ease;
+    }
+
+    .service-link:hover span {
+      transform: translateX(5px);
+    }
+
+    /* WHY US */
+
+    .why-section {
+      padding: 125px 0;
+      color: #111114;
+      background: #f2f2f3;
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns:
+        minmax(300px, 0.7fr)
+        minmax(0, 1.3fr);
+      gap: 80px;
+      align-items: start;
+    }
+
+    .why-section .section-label {
+      color: #5e5e66;
+    }
+
+    .why-section .section-description {
+      color: #62626a;
+    }
+
+    .feature-stack {
+      border-top: 1px solid #d6d6da;
+    }
+
+    .feature-item {
+      display: grid;
+      grid-template-columns:
+        70px minmax(0, 1fr) 90px;
+      gap: 22px;
+      align-items: center;
+      padding: 27px 0;
+      border-bottom: 1px solid #d6d6da;
+    }
+
+    .feature-item > span {
+      color: var(--red);
+      font-family: "Orbitron", sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+
+    .feature-item h3 {
+      margin: 0;
+      font-family: "Orbitron", sans-serif;
+      font-size: 1.05rem;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+    }
+
+    .feature-item p {
+      margin: 8px 0 0;
+      color: #6c6c74;
+      font-size: 0.88rem;
+      line-height: 1.65;
+    }
+
+    .feature-item i {
+      justify-self: end;
+      width: 54px;
+      height: 2px;
+      background:
+        linear-gradient(
+          90deg,
+          #b7b7bd,
+          var(--red)
+        );
+    }
+
+    /* PROCESS */
+
+    .process-section {
+      position: relative;
+      padding: 125px 0;
+      overflow: hidden;
+      background:
+        radial-gradient(
+          circle at 10% 90%,
+          rgba(220, 0, 28, 0.1),
+          transparent 26%
+        ),
+        #08080a;
+    }
+
+    .process-heading {
+      margin-bottom: 60px;
+    }
+
+    .process-grid {
+      position: relative;
+      display: grid;
+      grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .process-grid::before {
+      content: "";
+      position: absolute;
+      top: 39px;
+      left: 15%;
+      right: 15%;
+      height: 1px;
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 31, 61, 0.5),
+          transparent
+        );
+    }
+
+    .process-card {
+      position: relative;
+      z-index: 2;
+      min-height: 310px;
+      padding: 30px;
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.045),
+          rgba(255, 255, 255, 0.012)
+        );
+    }
+
+    .process-icon {
+      width: 78px;
+      height: 78px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 51px;
+      border: 1px solid rgba(255, 31, 61, 0.5);
+      color: var(--white);
+      background:
+        radial-gradient(
+          circle,
+          rgba(255, 31, 61, 0.25),
+          transparent 70%
+        ),
+        #0b0b0d;
+      font-family: "Orbitron", sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      box-shadow:
+        0 0 30px rgba(220, 0, 28, 0.12);
+    }
+
+    .process-card h3 {
+      margin: 0;
+      font-family: "Orbitron", sans-serif;
+      font-size: 1.15rem;
+      text-transform: uppercase;
+    }
+
+    .process-card p {
+      margin: 15px 0 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+
+    /* CTA */
+
+    .cta-section {
+      padding: 120px 0;
+      background: #f2f2f3;
+    }
+
+    .cta-panel {
+      position: relative;
+      display: grid;
+      grid-template-columns:
+        minmax(0, 1fr)
+        auto;
+      gap: 55px;
+      align-items: center;
+      overflow: hidden;
+      padding: 70px;
+      clip-path: polygon(
+        40px 0,
+        100% 0,
+        100% calc(100% - 40px),
+        calc(100% - 40px) 100%,
+        0 100%,
+        0 40px
+      );
+      color: var(--white);
+      background:
+        radial-gradient(
+          circle at 88% 20%,
+          rgba(255, 31, 61, 0.26),
+          transparent 30%
+        ),
+        linear-gradient(
+          145deg,
+          #17171c,
+          #08080a
+        );
+      box-shadow:
+        0 35px 80px rgba(0, 0, 0, 0.21);
+    }
+
+    .cta-panel::before {
+      content: "NV";
+      position: absolute;
+      right: 3%;
+      bottom: -29%;
+      color: rgba(255, 255, 255, 0.03);
+      font-family: "Orbitron", sans-serif;
+      font-size: 19rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .cta-copy {
+      position: relative;
+      z-index: 2;
+    }
+
+    .cta-copy h2 {
+      margin: 0;
+      max-width: 760px;
+      font-family: "Orbitron", sans-serif;
+      font-size: clamp(2rem, 4.4vw, 4.2rem);
+      line-height: 1;
+      letter-spacing: -0.045em;
+      text-transform: uppercase;
+    }
+
+    .cta-copy p {
+      max-width: 680px;
+      margin: 20px 0 0;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .cta-panel .button {
+      position: relative;
+      z-index: 2;
+      min-width: 235px;
+    }
+
+    /* FOOTER */
+
+    .footer {
+      padding: 68px 0 24px;
+      border-top: 1px solid var(--line);
+      background: #050506;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns:
+        1.35fr 0.65fr 0.65fr;
+      gap: 70px;
+      padding-bottom: 50px;
+    }
+
+    .footer-brand img {
+      width: 175px;
+      max-height: 72px;
+      object-fit: contain;
+      filter:
+        drop-shadow(0 10px 22px rgba(220, 0, 28, 0.18));
+    }
+
+    .footer-brand p {
+      max-width: 350px;
+      margin: 17px 0 0;
+      color: var(--muted);
+      font-size: 0.86rem;
+      line-height: 1.65;
+    }
+
+    .footer-links {
+      display: grid;
+      align-content: start;
+      gap: 9px;
+    }
+
+    .footer-links strong {
+      margin-bottom: 8px;
+      color: var(--white);
+      font-family: "Orbitron", sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    .footer-links a,
+    .footer-links span {
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .footer-links a:hover {
+      color: var(--white);
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      gap: 25px;
+      padding-top: 22px;
+      border-top: 1px solid var(--line);
+      color: var(--muted-dark);
+      font-size: 0.75rem;
+    }
+
+    .footer-bottom a:hover {
+      color: var(--white);
+    }
+
+    /* TABLET */
+
+    @media (max-width: 1050px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy {
+        max-width: 850px;
+      }
+
+      .cockpit {
+        width: min(100%, 720px);
+        min-height: 590px;
+        margin-inline: auto;
+      }
+
+      .services-heading {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .why-grid {
+        grid-template-columns: 1fr;
+        gap: 55px;
+      }
+
+      .cta-panel {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* MOBILE NAV */
 
     @media (max-width: 820px) {
       :root {
-        --header-height: 110px;
+        --header-height: 74px;
       }
 
       .container {
@@ -979,143 +1721,269 @@
         );
       }
 
-      .site-header {
-        height: var(--header-height);
-      }
-
-      .desktop-nav {
-        display: none;
-      }
-
       .menu-button {
         display: block;
       }
 
-      .mobile-menu {
-        display: flex;
-      }
-
-      .brand {
-        width: 205px;
-        height: 98px;
-      }
-
-      .brand img {
-        width: 200px;
-        max-height: 92px;
-      }
-
-      body.menu-open .brand {
+      .main-nav {
+        position: fixed;
+        inset: 0;
+        z-index: 101;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 26px;
+        padding: 110px 30px 40px;
         opacity: 0;
         visibility: hidden;
+        background:
+          radial-gradient(
+            circle at 80% 14%,
+            rgba(220, 0, 28, 0.2),
+            transparent 28%
+          ),
+          rgba(5, 5, 6, 0.985);
+        transform: translateY(-15px);
+        transition:
+          opacity 0.25s ease,
+          visibility 0.25s ease,
+          transform 0.25s ease;
       }
 
-      body.menu-open .menu-button {
-        position: fixed;
-        top: 25px;
-        right: 14px;
-        border-color: rgba(255, 255, 255, 0.36);
-        background: #141417;
+      .main-nav.open {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
       }
 
-      .quote-hero {
-        min-height: 760px;
-        padding:
-          calc(var(--header-height) + 105px)
-          0
-          85px;
+      .main-nav > a {
+        font-family: "Orbitron", sans-serif;
+        font-size: 1.18rem;
+        text-transform: uppercase;
       }
 
-      .back-link {
-        margin-bottom: 67px;
+      .nav-cta {
+        margin-top: 7px;
+        font-size: 0.78rem !important;
       }
 
-      .quote-hero h1 {
-        font-size: clamp(3.35rem, 13.5vw, 5.8rem);
+      .brand-image {
+        width: 120px;
       }
 
-      .hero-description {
-        font-size: 1.08rem;
+      .hero {
+        min-height: auto;
+        padding-top:
+          calc(var(--header-height) + 70px);
       }
 
-      .form-area {
-        padding: 100px 0 110px;
+      .hero-grid {
+        gap: 45px;
       }
 
-      .form-section {
-        padding: 40px 28px;
+      .hero h1 {
+        font-size: clamp(2.75rem, 12vw, 4.8rem);
       }
 
-      .submit-area {
-        padding: 38px 28px 43px;
+      .hero-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-stat {
+        padding: 15px 0;
+      }
+
+      .hero-stat + .hero-stat {
+        padding-left: 0;
+        border-top: 1px solid var(--line);
+        border-left: 0;
+      }
+
+      .cockpit {
+        min-height: 500px;
+      }
+
+      .cockpit-frame {
+        transform: none;
+      }
+
+      .steering-wheel {
+        left: 12%;
+        width: 150px;
+        height: 150px;
+      }
+
+      .steering-wheel::before {
+        top: 60px;
+        left: 18px;
+        width: 88px;
+      }
+
+      .steering-wheel::after {
+        top: 38px;
+        left: 52px;
+        height: 79px;
+      }
+
+      .steering-center {
+        inset: 39px;
+      }
+
+      .center-console {
+        right: 10%;
+        width: 160px;
+      }
+
+      .services-section,
+      .why-section,
+      .process-section,
+      .cta-section {
+        padding: 88px 0;
+      }
+
+      .service-layout,
+      .process-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .process-grid::before {
+        display: none;
+      }
+
+      .feature-item {
+        grid-template-columns:
+          55px minmax(0, 1fr);
+      }
+
+      .feature-item i {
+        display: none;
+      }
+
+      .cta-panel {
+        padding: 46px 28px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-brand {
+        grid-column: 1 / -1;
       }
     }
 
     /* SMALL MOBILE */
 
     @media (max-width: 560px) {
-      :root {
-        --header-height: 105px;
+      .hero-actions {
+        flex-direction: column;
       }
 
-      .brand {
-        width: 190px;
-        height: 94px;
-      }
-
-      .brand img {
-        width: 185px;
-        max-height: 88px;
-      }
-
-      .menu-button {
-        width: 54px;
-        height: 54px;
-      }
-
-      .quote-hero {
-        min-height: 745px;
-        padding-top:
-          calc(var(--header-height) + 90px);
-      }
-
-      .quote-hero h1 {
-        font-size: clamp(3.15rem, 13.7vw, 5rem);
-      }
-
-      .back-link {
-        margin-bottom: 60px;
-      }
-
-      .form-sidebar {
-        padding: 30px;
-      }
-
-      .fields,
-      .choices {
-        grid-template-columns: 1fr;
-      }
-
-      .field.full {
-        grid-column: auto;
-      }
-
-      .form-section-title {
-        gap: 13px;
-      }
-
-      .options-panel {
-        padding: 20px;
-      }
-
-      .submit-button {
+      .hero-actions .button {
         width: 100%;
       }
 
+      .cockpit {
+        min-height: 405px;
+      }
+
+      .cockpit-frame {
+        inset: 10px 0 0;
+      }
+
+      .hero-logo-badge {
+        width: 43%;
+      }
+
+      .visual-label {
+        padding: 9px 11px;
+      }
+
+      .visual-label-one {
+        top: 25px;
+        right: 0;
+      }
+
+      .visual-label-two {
+        left: 0;
+        bottom: 18px;
+      }
+
+      .windshield {
+        top: 5%;
+        height: 39%;
+      }
+
+      .dashboard {
+        height: 53%;
+      }
+
+      .steering-wheel {
+        left: 7%;
+        bottom: 3%;
+        width: 115px;
+        height: 115px;
+        border-width: 11px;
+      }
+
+      .steering-wheel::before,
+      .steering-wheel::after {
+        display: none;
+      }
+
+      .steering-center {
+        inset: 28px;
+        font-size: 0.65rem;
+      }
+
+      .center-console {
+        right: 7%;
+        width: 125px;
+        height: 175px;
+      }
+
+      .center-console::before {
+        left: 23px;
+        width: 79px;
+      }
+
+      .spec-list {
+        grid-template-columns: 1fr;
+      }
+
+      .service-panel {
+        min-height: auto;
+      }
+
+      .service-content {
+        padding: 27px;
+      }
+
+      .service-name {
+        font-size: 1.45rem;
+      }
+
+      .feature-item {
+        grid-template-columns: 42px 1fr;
+        gap: 13px;
+      }
+
+      .cta-panel .button {
+        width: 100%;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+
+      .footer-brand {
+        grid-column: auto;
+      }
+
       .footer-bottom {
-        align-items: flex-start;
         flex-direction: column;
-        gap: 12px;
+        gap: 9px;
       }
     }
 
@@ -1142,10 +2010,8 @@
 
 <body>
 
-  <!-- HEADER -->
-
-  <header class="site-header">
-    <div class="container header-inner">
+  <header class="site-header" id="top">
+    <div class="container nav-inner">
 
       <a
         class="brand"
@@ -1153,28 +2019,45 @@
         aria-label="NV Works Startseite"
       >
         <img
+          class="brand-image"
           src="nv-works-logo.png"
           alt="NV Works Logo"
         >
+
+        <span class="brand-fallback">
+          <strong>NV</strong>
+          WORKS
+        </span>
       </a>
 
-      <nav
-        class="desktop-nav"
-        aria-label="Desktop-Navigation"
+      <button
+        class="menu-button"
+        type="button"
+        aria-label="Menü öffnen"
+        aria-expanded="false"
       >
-        <a href="index.html#leistungen">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav
+        class="main-nav"
+        aria-label="Hauptnavigation"
+      >
+        <a href="#leistungen">
           Leistungen
         </a>
 
-        <a href="index.html#vorteile">
+        <a href="#vorteile">
           Warum wir
         </a>
 
-        <a href="index.html#fahrzeuge">
+        <a href="#fahrzeuge">
           Fahrzeuge
         </a>
 
-        <a href="index.html#ablauf">
+        <a href="#ablauf">
           Ablauf
         </a>
 
@@ -1186,854 +2069,570 @@
         </a>
       </nav>
 
-      <button
-        class="menu-button"
-        type="button"
-        aria-label="Menü öffnen"
-        aria-expanded="false"
-        aria-controls="mobileMenu"
-      >
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-
     </div>
   </header>
-
-
-  <!-- FIXED MOBILE MENU -->
-
-  <nav
-    class="mobile-menu"
-    id="mobileMenu"
-    aria-label="Mobile Navigation"
-  >
-    <div class="mobile-menu-inner">
-
-      <p class="mobile-menu-label">
-        Navigation
-      </p>
-
-      <div class="mobile-menu-links">
-
-        <a href="index.html#leistungen">
-          Leistungen
-        </a>
-
-        <a href="index.html#vorteile">
-          Warum wir
-        </a>
-
-        <a href="index.html#fahrzeuge">
-          Fahrzeuge
-        </a>
-
-        <a href="index.html#ablauf">
-          Ablauf
-        </a>
-
-        <a
-          class="mobile-menu-cta"
-          href="quote.html"
-        >
-          Angebot anfragen
-        </a>
-
-      </div>
-
-      <p class="mobile-menu-note">
-        NV Works – Ambientebeleuchtung und individuelle
-        Sternenhimmel für Fahrzeuge.
-      </p>
-
-    </div>
-  </nav>
 
 
   <main>
 
     <!-- HERO -->
 
-    <section class="quote-hero">
+    <section class="hero">
 
       <canvas
         class="star-canvas"
         aria-hidden="true"
       ></canvas>
 
-      <div class="container hero-content reveal">
+      <div class="container hero-grid">
 
-        <a
-          class="back-link"
-          href="index.html"
-        >
-          ← Zurück zur Startseite
-        </a>
+        <div class="hero-copy reveal">
 
-        <p class="eyebrow">
-          Persönliches Angebot
-        </p>
+          <div class="hero-badge">
+            <i></i>
+            Automotive Interior Customization
+          </div>
 
-        <h1>
-          Erzählen Sie uns von Ihrem Fahrzeug.
-        </h1>
+          <h1>
+            Lichtdesign
+            <span>für Ihr Fahrzeug.</span>
+          </h1>
 
-        <p class="hero-description">
-          Füllen Sie das Formular aus. Wir prüfen Ihre
-          Angaben und melden uns mit einer persönlichen
-          Beratung und einem individuellen Angebot.
-        </p>
+          <p class="hero-description">
+            Professionelle Ambientebeleuchtung und individuell
+            angefertigte Sternenhimmel. Präzise eingebaut,
+            modern steuerbar und passend zu Ihrem Fahrzeug.
+          </p>
+
+          <div class="hero-actions">
+
+            <a
+              class="button button-primary"
+              href="quote.html"
+            >
+              Angebot anfragen
+              <span>→</span>
+            </a>
+
+            <a
+              class="button button-secondary"
+              href="#leistungen"
+            >
+              Leistungen ansehen
+            </a>
+
+          </div>
+
+          <div class="hero-stats">
+
+            <div class="hero-stat">
+              <strong>OEM-Optik</strong>
+              <span>Werksnahe Integration</span>
+            </div>
+
+            <div class="hero-stat">
+              <strong>Individuell</strong>
+              <span>Farben, Sterne und Effekte</span>
+            </div>
+
+            <div class="hero-stat">
+              <strong>Professionell</strong>
+              <span>Sauberer Einbau</span>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="cockpit reveal">
+
+          <div class="cockpit-frame">
+
+            <div class="windshield">
+
+              <div class="windshield-stars">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+
+            </div>
+
+            <div class="dashboard"></div>
+
+            <div class="steering-wheel">
+              <div class="steering-center">
+                NV
+              </div>
+            </div>
+
+            <div class="center-console"></div>
+
+            <div class="door-light"></div>
+
+            <img
+              class="hero-logo-badge"
+              src="nv-works-logo.png"
+              alt="NV Works"
+            >
+
+          </div>
+
+
+          <div class="visual-label visual-label-one">
+            <i></i>
+
+            <span>
+              <strong>Sternenhimmel</strong>
+              <small>Individuelle Lichtfasern</small>
+            </span>
+          </div>
+
+
+          <div class="visual-label visual-label-two">
+            <i></i>
+
+            <span>
+              <strong>Ambientelicht</strong>
+              <small>Farben und Effekte</small>
+            </span>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- VEHICLE BRANDS -->
+
+    <section
+      class="brand-strip"
+      id="fahrzeuge"
+      aria-label="Unterstützte Fahrzeugmarken"
+    >
+
+      <div class="brand-track">
+
+        <span>BMW</span>
+        <span>Mercedes-Benz</span>
+        <span>Audi</span>
+        <span>Porsche</span>
+        <span>Tesla</span>
+        <span>Volkswagen</span>
+        <span>Ferrari</span>
+        <span>Lamborghini</span>
+        <span>Bentley</span>
+        <span>Land Rover</span>
+        <span>Rolls-Royce</span>
+        <span>McLaren</span>
+
+        <span>BMW</span>
+        <span>Mercedes-Benz</span>
+        <span>Audi</span>
+        <span>Porsche</span>
+        <span>Tesla</span>
+        <span>Volkswagen</span>
+        <span>Ferrari</span>
+        <span>Lamborghini</span>
+        <span>Bentley</span>
+        <span>Land Rover</span>
+        <span>Rolls-Royce</span>
+        <span>McLaren</span>
 
       </div>
 
     </section>
 
 
-    <!-- FORM -->
+    <!-- SERVICES -->
 
-    <section class="form-area">
+    <section
+      class="services-section"
+      id="leistungen"
+    >
 
-      <div class="container form-layout">
+      <div class="container">
 
-        <aside class="form-sidebar reveal">
+        <div class="services-heading reveal">
 
-          <p class="sidebar-label">
-            NV Works
-          </p>
+          <div>
+            <p class="section-label">
+              Unsere Leistungen
+            </p>
 
-          <h2>
-            Ihre Anfrage in wenigen Minuten.
-          </h2>
-
-          <div class="sidebar-step">
-            <span>01</span>
-
-            <div>
-              <strong>Kontaktdaten</strong>
-
-              <small>
-                Damit wir Sie erreichen können.
-              </small>
-            </div>
+            <h2 class="section-title">
+              Individuelles Licht.
+              <span>Perfekt integriert.</span>
+            </h2>
           </div>
 
-          <div class="sidebar-step">
-            <span>02</span>
-
-            <div>
-              <strong>Fahrzeug & Leistung</strong>
-
-              <small>
-                Damit wir Ihr Projekt einschätzen können.
-              </small>
-            </div>
-          </div>
-
-          <div class="sidebar-step">
-            <span>03</span>
-
-            <div>
-              <strong>Wunschtermin</strong>
-
-              <small>
-                Wir bestätigen den Termin persönlich.
-              </small>
-            </div>
-          </div>
-
-          <p class="sidebar-note">
-            <strong>Hinweis:</strong>
-            Das Absenden des Formulars ist noch keine feste
-            Terminbestätigung.
+          <p>
+            Jede Installation wird passend zu Fahrzeug,
+            Ausstattung und gewünschter Wirkung geplant.
+            Das Ergebnis soll nicht nachgerüstet wirken,
+            sondern hochwertig und sauber integriert.
           </p>
 
-        </aside>
+        </div>
 
 
-        <div class="form-box reveal">
+        <div class="service-layout">
 
-          <p class="preview-banner">
-            <strong>Vorschau-Modus:</strong>
-            Das Formular kann bereits getestet werden.
-            Formspree wird später mit zwei kleinen Änderungen
-            aktiviert.
-          </p>
+          <article class="service-panel reveal">
 
-          <!--
-            FORMSPREE SPÄTER AKTIVIEREN:
+            <div class="service-panel-top ambient-visual">
 
-            action="#" ändern zu:
-            action="https://formspree.io/f/DEINE_FORM_ID"
+              <span class="service-number">
+                SERVICE 01
+              </span>
 
-            data-mode="preview" ändern zu:
-            data-mode="live"
-          -->
+              <div class="ambient-dashboard"></div>
 
-          <form
-            id="quoteForm"
-            action="#"
-            method="POST"
-            data-mode="preview"
-          >
-
-            <input
-              type="hidden"
-              name="_subject"
-              value="Neue NV Works Kundenanfrage"
-            >
-
-
-            <!-- CONTACT INFORMATION -->
-
-            <section class="form-section">
-
-              <div class="form-section-title">
-                <span>01</span>
-
-                <div>
-                  <h2>Kontaktdaten</h2>
-
-                  <p>
-                    Wie können wir Sie erreichen?
-                  </p>
-                </div>
-              </div>
-
-              <div class="fields">
-
-                <label class="field full">
-                  Vorname <em>*</em>
-
-                  <input
-                    name="Vorname"
-                    type="text"
-                    autocomplete="given-name"
-                    placeholder="Ihr Vorname"
-                    required
-                  >
-                </label>
-
-                <label class="field">
-                  E-Mail-Adresse <em>*</em>
-
-                  <input
-                    name="E-Mail"
-                    type="email"
-                    autocomplete="email"
-                    placeholder="name@beispiel.de"
-                    required
-                  >
-                </label>
-
-                <label class="field">
-                  Telefonnummer <em>*</em>
-
-                  <input
-                    name="Telefonnummer"
-                    type="tel"
-                    autocomplete="tel"
-                    placeholder="+49 ..."
-                    required
-                  >
-                </label>
-
-                <label class="field full">
-                  Wohnort / Postleitzahl <em>*</em>
-
-                  <input
-                    name="Wohnort und Postleitzahl"
-                    type="text"
-                    autocomplete="postal-code"
-                    placeholder="Zum Beispiel: 10115 Berlin"
-                    required
-                  >
-                </label>
-
-              </div>
-
-            </section>
-
-
-            <!-- VEHICLE INFORMATION -->
-
-            <section class="form-section">
-
-              <div class="form-section-title">
-                <span>02</span>
-
-                <div>
-                  <h2>Fahrzeug</h2>
-
-                  <p>
-                    Welches Fahrzeug möchten Sie veredeln?
-                  </p>
-                </div>
-              </div>
-
-              <div class="fields">
-
-                <label class="field">
-                  Fahrzeugmarke <em>*</em>
-
-                  <select
-                    name="Fahrzeugmarke"
-                    required
-                  >
-                    <option value="">
-                      Bitte auswählen
-                    </option>
-
-                    <option>Acura</option>
-                    <option>Aston Martin</option>
-                    <option>Audi</option>
-                    <option>Bentley</option>
-                    <option>BMW</option>
-                    <option>Cadillac</option>
-                    <option>Chevrolet</option>
-                    <option>Chrysler</option>
-                    <option>Dodge</option>
-                    <option>Ferrari</option>
-                    <option>Ford</option>
-                    <option>GMC</option>
-                    <option>Jaguar</option>
-                    <option>Jeep</option>
-                    <option>Lamborghini</option>
-                    <option>Land Rover</option>
-                    <option>Lexus</option>
-                    <option>Maserati</option>
-                    <option>McLaren</option>
-                    <option>Mercedes-Benz</option>
-                    <option>Porsche</option>
-                    <option>Rolls-Royce</option>
-                    <option>Tesla</option>
-                    <option>Volkswagen</option>
-                    <option>Andere</option>
-                  </select>
-                </label>
-
-                <label class="field">
-                  Modell <em>*</em>
-
-                  <input
-                    name="Fahrzeugmodell"
-                    type="text"
-                    placeholder="Zum Beispiel: 3er, C-Klasse"
-                    required
-                  >
-                </label>
-
-                <label class="field">
-                  Baujahr <em>*</em>
-
-                  <input
-                    name="Baujahr"
-                    type="number"
-                    min="1980"
-                    max="2030"
-                    placeholder="2022"
-                    required
-                  >
-                </label>
-
-                <label class="field">
-                  Fahrgestellnummer (VIN)
-
-                  <input
-                    name="VIN"
-                    type="text"
-                    maxlength="17"
-                    placeholder="Optional"
-                  >
-                </label>
-
-              </div>
-
-            </section>
-
-
-            <!-- SERVICE -->
-
-            <section class="form-section">
-
-              <div class="form-section-title">
-                <span>03</span>
-
-                <div>
-                  <h2>Gewünschte Leistung</h2>
-
-                  <p>
-                    Welche Arbeiten interessieren Sie?
-                  </p>
-                </div>
-              </div>
-
-              <div class="fields">
-
-                <label class="field full">
-                  Leistung <em>*</em>
-
-                  <select
-                    id="service"
-                    name="Gewünschte Leistung"
-                    required
-                  >
-                    <option value="">
-                      Bitte auswählen
-                    </option>
-
-                    <option value="ambient">
-                      Ambientebeleuchtung
-                    </option>
-
-                    <option value="starlight">
-                      Sternenhimmel
-                    </option>
-
-                    <option value="both">
-                      Ambientebeleuchtung & Sternenhimmel
-                    </option>
-
-                    <option value="consultation">
-                      Persönliche Beratung
-                    </option>
-                  </select>
-                </label>
-
-              </div>
-
-
-              <!-- AMBIENT OPTIONS -->
-
-              <div
-                class="options-panel"
-                data-panel="ambient"
-                hidden
-              >
-
-                <h3>
-                  Ambientebeleuchtung
-                </h3>
-
-                <div class="fields">
-
-                  <label class="field">
-                    Steuerung
-
-                    <select
-                      name="Ambientebeleuchtung Steuerung"
-                    >
-                      <option value="">
-                        Bitte auswählen
-                      </option>
-
-                      <option>
-                        Smartphone / App
-                      </option>
-
-                      <option>
-                        Fahrzeugmenü / OEM-Integration
-                      </option>
-
-                      <option>
-                        Fernbedienung
-                      </option>
-
-                      <option>
-                        Beratung gewünscht
-                      </option>
-                    </select>
-                  </label>
-
-                  <label class="field">
-                    Farbwunsch
-
-                    <select
-                      name="Ambientebeleuchtung Farbwunsch"
-                    >
-                      <option value="">
-                        Bitte auswählen
-                      </option>
-
-                      <option>
-                        Mehrfarbig / RGB
-                      </option>
-
-                      <option>
-                        Einzelfarbe
-                      </option>
-
-                      <option>
-                        OEM-Farbpalette
-                      </option>
-
-                      <option>
-                        Noch offen
-                      </option>
-                    </select>
-                  </label>
-
-                </div>
-
-                <fieldset class="choice-field">
-
-                  <legend>
-                    Gewünschte Bereiche
-                  </legend>
-
-                  <div class="choices">
-
-                    <label class="choice">
-                      <input
-                        type="checkbox"
-                        name="Ambientebereiche"
-                        value="Armaturenbrett"
-                      >
-
-                      Armaturenbrett
-                    </label>
-
-                    <label class="choice">
-                      <input
-                        type="checkbox"
-                        name="Ambientebereiche"
-                        value="Türen"
-                      >
-
-                      Türen
-                    </label>
-
-                    <label class="choice">
-                      <input
-                        type="checkbox"
-                        name="Ambientebereiche"
-                        value="Fußraum"
-                      >
-
-                      Fußraum
-                    </label>
-
-                    <label class="choice">
-                      <input
-                        type="checkbox"
-                        name="Ambientebereiche"
-                        value="Mittelkonsole"
-                      >
-
-                      Mittelkonsole
-                    </label>
-
-                  </div>
-
-                </fieldset>
-
-              </div>
-
-
-              <!-- STARLIGHT OPTIONS -->
-
-              <div
-                class="options-panel"
-                data-panel="starlight"
-                hidden
-              >
-
-                <h3>
-                  Sternenhimmel
-                </h3>
-
-                <div class="fields">
-
-                  <label class="field">
-                    Anzahl der Sterne
-
-                    <select
-                      name="Sternenanzahl"
-                    >
-                      <option value="">
-                        Bitte auswählen
-                      </option>
-
-                      <option>400 Sterne</option>
-                      <option>600 Sterne</option>
-                      <option>800 Sterne</option>
-                      <option>1.200 Sterne</option>
-                      <option>1.600 Sterne</option>
-                      <option>2.000 Sterne</option>
-
-                      <option>
-                        Beratung gewünscht
-                      </option>
-                    </select>
-                  </label>
-
-                  <label class="field">
-                    Dachhimmel-Material
-
-                    <select
-                      name="Dachhimmel Material"
-                    >
-                      <option value="">
-                        Bitte auswählen
-                      </option>
-
-                      <option>Originalmaterial</option>
-                      <option>Vinyl</option>
-                      <option>Alcantara</option>
-                      <option>Ultrasuede</option>
-
-                      <option>
-                        Beratung gewünscht
-                      </option>
-                    </select>
-                  </label>
-
-                  <label class="field">
-                    Farbe
-
-                    <select
-                      name="Sternenhimmel Farbe"
-                    >
-                      <option value="">
-                        Bitte auswählen
-                      </option>
-
-                      <option>Nur Weiß</option>
-                      <option>RGBW / Mehrfarbig</option>
-                    </select>
-                  </label>
-
-                  <label class="field">
-                    Schiebedach / Panoramadach
-
-                    <select
-                      name="Schiebedach oder Panoramadach"
-                    >
-                      <option value="">
-                        Bitte auswählen
-                      </option>
-
-                      <option>Ja</option>
-                      <option>Nein</option>
-                    </select>
-                  </label>
-
-                </div>
-
-                <fieldset class="choice-field">
-
-                  <legend>
-                    Zusätzliche Optionen
-                  </legend>
-
-                  <div class="choices">
-
-                    <label class="choice">
-                      <input
-                        type="checkbox"
-                        name="Sternenhimmel Optionen"
-                        value="Twinkle-Effekt"
-                      >
-
-                      Twinkle-Effekt
-                    </label>
-
-                    <label class="choice">
-                      <input
-                        type="checkbox"
-                        name="Sternenhimmel Optionen"
-                        value="Shooting Star"
-                      >
-
-                      Shooting Star
-                    </label>
-
-                    <label class="choice">
-                      <input
-                        type="checkbox"
-                        name="Sternenhimmel Optionen"
-                        value="Wunschlogo"
-                      >
-
-                      Wunschlogo
-                    </label>
-
-                    <label class="choice">
-                      <input
-                        type="checkbox"
-                        name="Sternenhimmel Optionen"
-                        value="Türverkleidung"
-                      >
-
-                      Türverkleidung
-                    </label>
-
-                  </div>
-
-                </fieldset>
-
-              </div>
-
-            </section>
-
-
-            <!-- APPOINTMENT -->
-
-            <section class="form-section">
-
-              <div class="form-section-title">
-                <span>04</span>
-
-                <div>
-                  <h2>Wunschtermin</h2>
-
-                  <p>
-                    Wann möchten Sie Ihr Fahrzeug
-                    vorbeibringen?
-                  </p>
-                </div>
-              </div>
-
-              <div class="fields">
-
-                <label class="field">
-                  Bevorzugtes Datum <em>*</em>
-
-                  <input
-                    id="appointmentDate"
-                    name="Wunschdatum"
-                    type="date"
-                    required
-                  >
-                </label>
-
-                <label class="field">
-                  Bevorzugte Uhrzeit <em>*</em>
-
-                  <select
-                    name="Wunschzeit"
-                    required
-                  >
-                    <option value="">
-                      Bitte auswählen
-                    </option>
-
-                    <option>
-                      08:00 – 10:00 Uhr
-                    </option>
-
-                    <option>
-                      10:00 – 12:00 Uhr
-                    </option>
-
-                    <option>
-                      12:00 – 14:00 Uhr
-                    </option>
-
-                    <option>
-                      14:00 – 16:00 Uhr
-                    </option>
-
-                    <option>
-                      16:00 – 18:00 Uhr
-                    </option>
-
-                    <option>
-                      Flexibel
-                    </option>
-                  </select>
-                </label>
-
-                <label class="field full">
-                  Besondere Wünsche oder Fragen
-
-                  <textarea
-                    name="Besondere Wünsche"
-                    rows="7"
-                    placeholder="Beschreiben Sie Ihre Vorstellungen, Farben, Effekte oder weitere Details."
-                  ></textarea>
-                </label>
-
-              </div>
-
-            </section>
-
-
-            <!-- SUBMIT -->
-
-            <div class="submit-area">
-
-              <label class="consent">
-
-                <input
-                  type="checkbox"
-                  name="Einwilligung"
-                  value="Bestätigt"
-                  required
-                >
-
-                <span>
-                  Ich bestätige, dass meine Angaben zur
-                  Bearbeitung dieser Anfrage verwendet
-                  werden dürfen. <em>*</em>
-                </span>
-
-              </label>
-
-              <button
-                class="submit-button"
-                type="submit"
-              >
-                Anfrage absenden
-                <span>→</span>
-              </button>
-
-              <p class="submit-note">
-                Das Absenden ist unverbindlich und noch
-                keine Terminbestätigung.
-              </p>
+              <span class="service-name">
+                Ambient
+              </span>
 
             </div>
 
+            <div class="service-content">
 
-            <!-- PREVIEW SUCCESS -->
-
-            <div
-              class="success-panel"
-              hidden
-            >
-
-              <div class="success-icon">
-                ✓
-              </div>
-
-              <h2>
-                Die Vorschau funktioniert.
-              </h2>
+              <h3>
+                Ambientebeleuchtung
+              </h3>
 
               <p>
-                Das Formular ist noch nicht mit Formspree
-                verbunden. Nach dem Einsetzen der
-                Formspree-ID werden Kundenanfragen direkt
-                an die Arbeits-E-Mail Ihres Freundes gesendet.
+                Flexible Farben, Helligkeit und Lichteffekte
+                für Armaturenbrett, Türen, Mittelkonsole und
+                Fußraum. Je nach System per App oder direkt
+                über das Fahrzeugmenü steuerbar.
               </p>
 
-              <button
-                class="reset-button"
-                type="button"
-                data-reset-form
+              <div class="spec-list">
+
+                <span>RGB-Farbsteuerung</span>
+
+                <span>Smartphone-App</span>
+
+                <span>OEM-Integration</span>
+
+                <span>Mehrere Innenraumbereiche</span>
+
+              </div>
+
+              <a
+                class="service-link"
+                href="quote.html?service=ambient"
               >
-                Formular weiter testen
-              </button>
+                Ambientebeleuchtung anfragen
+                <span>→</span>
+              </a>
 
             </div>
 
-          </form>
+          </article>
+
+
+          <article class="service-panel reveal">
+
+            <div class="service-panel-top starlight-visual">
+
+              <span class="service-number">
+                SERVICE 02
+              </span>
+
+              <div class="service-stars"></div>
+
+              <span class="service-name">
+                Starlight
+              </span>
+
+            </div>
+
+            <div class="service-content">
+
+              <h3>
+                Individueller Sternenhimmel
+              </h3>
+
+              <p>
+                Individuell geplante Lichtfasern für den
+                Fahrzeughimmel. Sternenanzahl, Farbe,
+                Material und zusätzliche Effekte werden
+                passend zu Ihren Vorstellungen ausgewählt.
+              </p>
+
+              <div class="spec-list">
+
+                <span>400–2.000 Sterne</span>
+
+                <span>Weiß oder RGBW</span>
+
+                <span>Twinkle-Effekt</span>
+
+                <span>Shooting Star</span>
+
+              </div>
+
+              <a
+                class="service-link"
+                href="quote.html?service=starlight"
+              >
+                Sternenhimmel anfragen
+                <span>→</span>
+              </a>
+
+            </div>
+
+          </article>
 
         </div>
 
       </div>
+    </section>
 
+
+    <!-- WHY NV WORKS -->
+
+    <section
+      class="why-section"
+      id="vorteile"
+    >
+
+      <div class="container why-grid">
+
+        <div class="reveal">
+
+          <p class="section-label">
+            Warum NV Works
+          </p>
+
+          <h2 class="section-title">
+            Präzision bis ins
+            <span>kleinste Detail.</span>
+          </h2>
+
+          <p class="section-description">
+            Von der ersten Beratung bis zur fertigen
+            Installation wird jedes Projekt individuell
+            geplant und professionell umgesetzt.
+          </p>
+
+        </div>
+
+
+        <div class="feature-stack">
+
+          <article class="feature-item reveal">
+
+            <span>01</span>
+
+            <div>
+              <h3>Individuelle Planung</h3>
+
+              <p>
+                Fahrzeug, gewünschte Optik, Farben und
+                Funktionen werden vor dem Einbau abgestimmt.
+              </p>
+            </div>
+
+            <i></i>
+
+          </article>
+
+
+          <article class="feature-item reveal">
+
+            <span>02</span>
+
+            <div>
+              <h3>Hochwertige Materialien</h3>
+
+              <p>
+                Langlebige Komponenten und eine saubere,
+                professionelle Verarbeitung.
+              </p>
+            </div>
+
+            <i></i>
+
+          </article>
+
+
+          <article class="feature-item reveal">
+
+            <span>03</span>
+
+            <div>
+              <h3>Saubere Integration</h3>
+
+              <p>
+                Kabel und Komponenten werden ordentlich
+                verbaut, damit das Ergebnis möglichst
+                werksnah wirkt.
+              </p>
+            </div>
+
+            <i></i>
+
+          </article>
+
+
+          <article class="feature-item reveal">
+
+            <span>04</span>
+
+            <div>
+              <h3>Persönliche Beratung</h3>
+
+              <p>
+                Jede Anfrage wird persönlich geprüft und
+                passend zu Fahrzeug und Projekt beantwortet.
+              </p>
+            </div>
+
+            <i></i>
+
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- PROCESS -->
+
+    <section
+      class="process-section"
+      id="ablauf"
+    >
+
+      <div class="container">
+
+        <div class="process-heading reveal">
+
+          <p class="section-label">
+            So funktioniert es
+          </p>
+
+          <h2 class="section-title">
+            Von der Anfrage
+            <span>bis zum Einbau.</span>
+          </h2>
+
+        </div>
+
+
+        <div class="process-grid">
+
+          <article class="process-card reveal">
+
+            <div class="process-icon">
+              01
+            </div>
+
+            <h3>
+              Anfrage senden
+            </h3>
+
+            <p>
+              Teilen Sie uns Fahrzeug, Modell, gewünschte
+              Leistung und Ihren bevorzugten Termin mit.
+            </p>
+
+          </article>
+
+
+          <article class="process-card reveal">
+
+            <div class="process-icon">
+              02
+            </div>
+
+            <h3>
+              Beratung & Angebot
+            </h3>
+
+            <p>
+              Wir prüfen Ihre Angaben, besprechen die
+              Möglichkeiten und erstellen ein individuelles
+              Angebot.
+            </p>
+
+          </article>
+
+
+          <article class="process-card reveal">
+
+            <div class="process-icon">
+              03
+            </div>
+
+            <h3>
+              Professioneller Einbau
+            </h3>
+
+            <p>
+              Nach der Terminbestätigung wird Ihr Projekt
+              sorgfältig und professionell umgesetzt.
+            </p>
+
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- CTA -->
+
+    <section class="cta-section">
+
+      <div class="container">
+
+        <div class="cta-panel reveal">
+
+          <div class="cta-copy">
+
+            <p class="section-label">
+              Ihr Projekt beginnt hier
+            </p>
+
+            <h2>
+              Verwandeln Sie Ihren Innenraum.
+            </h2>
+
+            <p>
+              Senden Sie uns Ihre Fahrzeugdaten und Wünsche.
+              Wir melden uns mit einer persönlichen
+              Einschätzung und einem individuellen Angebot.
+            </p>
+
+          </div>
+
+          <a
+            class="button button-primary"
+            href="quote.html"
+          >
+            Anfrage starten
+            <span>→</span>
+          </a>
+
+        </div>
+
+      </div>
     </section>
 
   </main>
@@ -2041,7 +2640,64 @@
 
   <!-- FOOTER -->
 
-  <footer class="site-footer">
+  <footer class="footer">
+
+    <div class="container footer-grid">
+
+      <div class="footer-brand">
+
+        <img
+          src="nv-works-logo.png"
+          alt="NV Works Logo"
+        >
+
+        <p>
+          Professionelle Ambientebeleuchtung und individuell
+          angefertigte Sternenhimmel für Fahrzeuge.
+        </p>
+
+      </div>
+
+
+      <div class="footer-links">
+
+        <strong>Navigation</strong>
+
+        <a href="#leistungen">
+          Leistungen
+        </a>
+
+        <a href="#vorteile">
+          Warum wir
+        </a>
+
+        <a href="#fahrzeuge">
+          Fahrzeuge
+        </a>
+
+        <a href="#ablauf">
+          Ablauf
+        </a>
+
+      </div>
+
+
+      <div class="footer-links">
+
+        <strong>Kontakt</strong>
+
+        <span>Persönliche Beratung</span>
+
+        <span>Termine nach Vereinbarung</span>
+
+        <a href="quote.html">
+          Angebot anfragen
+        </a>
+
+      </div>
+
+    </div>
+
 
     <div class="container footer-bottom">
 
@@ -2050,8 +2706,8 @@
         NV Works. Alle Rechte vorbehalten.
       </span>
 
-      <a href="index.html">
-        Zur Startseite
+      <a href="#top">
+        Nach oben ↑
       </a>
 
     </div>
@@ -2063,19 +2719,22 @@
     (() => {
       "use strict";
 
+      const header =
+        document.querySelector(".site-header");
+
       const menuButton =
         document.querySelector(".menu-button");
 
-      const mobileMenu =
-        document.querySelector(".mobile-menu");
+      const navigation =
+        document.querySelector(".main-nav");
 
-      const mobileLinks =
+      const brandImages =
         document.querySelectorAll(
-          ".mobile-menu a"
+          ".brand-image, .hero-logo-badge, .footer-brand img"
         );
 
       const closeMenu = () => {
-        if (!menuButton || !mobileMenu) {
+        if (!menuButton || !navigation) {
           return;
         }
 
@@ -2084,21 +2743,14 @@
           "false"
         );
 
-        menuButton.setAttribute(
-          "aria-label",
-          "Menü öffnen"
-        );
-
-        mobileMenu.classList.remove(
-          "open"
-        );
+        navigation.classList.remove("open");
 
         document.body.classList.remove(
           "menu-open"
         );
       };
 
-      if (menuButton && mobileMenu) {
+      if (menuButton && navigation) {
         menuButton.addEventListener(
           "click",
           () => {
@@ -2112,14 +2764,7 @@
               String(!isOpen)
             );
 
-            menuButton.setAttribute(
-              "aria-label",
-              isOpen
-                ? "Menü öffnen"
-                : "Menü schließen"
-            );
-
-            mobileMenu.classList.toggle(
+            navigation.classList.toggle(
               "open",
               !isOpen
             );
@@ -2131,12 +2776,14 @@
           }
         );
 
-        mobileLinks.forEach((link) => {
-          link.addEventListener(
-            "click",
-            closeMenu
-          );
-        });
+        navigation
+          .querySelectorAll("a")
+          .forEach((link) => {
+            link.addEventListener(
+              "click",
+              closeMenu
+            );
+          });
 
         window.addEventListener(
           "resize",
@@ -2148,21 +2795,58 @@
         );
       }
 
+      const updateHeader = () => {
+        if (!header) {
+          return;
+        }
+
+        header.classList.toggle(
+          "scrolled",
+          window.scrollY > 15
+        );
+      };
+
+      updateHeader();
+
+      window.addEventListener(
+        "scroll",
+        updateHeader,
+        {
+          passive: true
+        }
+      );
+
       document
         .querySelectorAll("[data-year]")
         .forEach((element) => {
           element.textContent =
-            String(
-              new Date().getFullYear()
-            );
+            new Date().getFullYear();
         });
 
-      /* REVEAL ANIMATIONS */
+      brandImages.forEach((image) => {
+        image.addEventListener(
+          "error",
+          () => {
+            image.style.display = "none";
+
+            if (
+              image.classList.contains(
+                "brand-image"
+              )
+            ) {
+              const fallback =
+                image.nextElementSibling;
+
+              if (fallback) {
+                fallback.style.display = "flex";
+              }
+            }
+          }
+        );
+      });
 
       const revealElements =
-        document.querySelectorAll(
-          ".reveal"
-        );
+        document.querySelectorAll(".reveal");
 
       if (
         "IntersectionObserver" in window
@@ -2170,26 +2854,22 @@
         const observer =
           new IntersectionObserver(
             (entries) => {
-              entries.forEach(
-                (entry) => {
-                  if (
-                    !entry.isIntersecting
-                  ) {
-                    return;
-                  }
-
-                  entry.target.classList.add(
-                    "visible"
-                  );
-
-                  observer.unobserve(
-                    entry.target
-                  );
+              entries.forEach((entry) => {
+                if (!entry.isIntersecting) {
+                  return;
                 }
-              );
+
+                entry.target.classList.add(
+                  "visible"
+                );
+
+                observer.unobserve(
+                  entry.target
+                );
+              });
             },
             {
-              threshold: 0.1
+              threshold: 0.12
             }
           );
 
@@ -2207,8 +2887,6 @@
           }
         );
       }
-
-      /* STAR BACKGROUND */
 
       const canvas =
         document.querySelector(
@@ -2245,17 +2923,13 @@
             canvas.width =
               Math.max(
                 1,
-                Math.floor(
-                  width * ratio
-                )
+                Math.floor(width * ratio)
               );
 
             canvas.height =
               Math.max(
                 1,
-                Math.floor(
-                  height * ratio
-                )
+                Math.floor(height * ratio)
               );
 
             context.setTransform(
@@ -2269,11 +2943,9 @@
 
             const amount =
               Math.max(
-                65,
+                70,
                 Math.floor(
-                  width *
-                  height /
-                  11000
+                  width * height / 12000
                 )
               );
 
@@ -2282,29 +2954,15 @@
                 length: amount
               },
               () => ({
-                x:
-                  Math.random() *
-                  width,
-
-                y:
-                  Math.random() *
-                  height,
-
+                x: Math.random() * width,
+                y: Math.random() * height,
                 radius:
-                  Math.random() *
-                  1.4 +
-                  0.2,
-
+                  Math.random() * 1.4 + 0.2,
                 opacity:
-                  Math.random() *
-                  0.7 +
-                  0.12,
-
+                  Math.random() * 0.72 + 0.12,
                 speed:
-                  Math.random() *
-                  0.002 +
+                  Math.random() * 0.002 +
                   0.0006,
-
                 phase:
                   Math.random() *
                   Math.PI *
@@ -2385,195 +3043,6 @@
           );
         }
       }
-
-      /* FORM OPTIONS */
-
-      const form =
-        document.querySelector(
-          "#quoteForm"
-        );
-
-      if (!form) {
-        return;
-      }
-
-      const serviceSelect =
-        form.querySelector(
-          "#service"
-        );
-
-      const ambientPanel =
-        form.querySelector(
-          '[data-panel="ambient"]'
-        );
-
-      const starlightPanel =
-        form.querySelector(
-          '[data-panel="starlight"]'
-        );
-
-      const appointmentDate =
-        form.querySelector(
-          "#appointmentDate"
-        );
-
-      const formSections =
-        form.querySelectorAll(
-          ".form-section, .submit-area"
-        );
-
-      const successPanel =
-        form.querySelector(
-          ".success-panel"
-        );
-
-      const resetButton =
-        form.querySelector(
-          "[data-reset-form]"
-        );
-
-      if (appointmentDate) {
-        const currentDate =
-          new Date();
-
-        const localDate =
-          new Date(
-            currentDate.getTime() -
-            currentDate.getTimezoneOffset() *
-            60000
-          )
-            .toISOString()
-            .split("T")[0];
-
-        appointmentDate.min =
-          localDate;
-      }
-
-      const setPanelState = (
-        panel,
-        show
-      ) => {
-        if (!panel) {
-          return;
-        }
-
-        panel.hidden = !show;
-
-        panel
-          .querySelectorAll(
-            "input, select, textarea"
-          )
-          .forEach((control) => {
-            control.disabled =
-              !show;
-          });
-      };
-
-      const updatePanels = () => {
-        const selectedValue =
-          serviceSelect?.value || "";
-
-        setPanelState(
-          ambientPanel,
-          selectedValue === "ambient" ||
-          selectedValue === "both"
-        );
-
-        setPanelState(
-          starlightPanel,
-          selectedValue === "starlight" ||
-          selectedValue === "both"
-        );
-      };
-
-      const requestedService =
-        new URLSearchParams(
-          window.location.search
-        ).get("service");
-
-      if (
-        serviceSelect &&
-        requestedService &&
-        Array.from(
-          serviceSelect.options
-        ).some(
-          (option) =>
-            option.value ===
-            requestedService
-        )
-      ) {
-        serviceSelect.value =
-          requestedService;
-      }
-
-      serviceSelect?.addEventListener(
-        "change",
-        updatePanels
-      );
-
-      updatePanels();
-
-      /* PREVIEW SUBMIT */
-
-      form.addEventListener(
-        "submit",
-        (event) => {
-          if (
-            form.dataset.mode ===
-            "live"
-          ) {
-            return;
-          }
-
-          event.preventDefault();
-
-          if (!form.reportValidity()) {
-            return;
-          }
-
-          formSections.forEach(
-            (section) => {
-              section.hidden = true;
-            }
-          );
-
-          if (successPanel) {
-            successPanel.hidden =
-              false;
-
-            successPanel.scrollIntoView({
-              behavior: "smooth",
-              block: "center"
-            });
-          }
-        }
-      );
-
-      resetButton?.addEventListener(
-        "click",
-        () => {
-          form.reset();
-
-          formSections.forEach(
-            (section) => {
-              section.hidden =
-                false;
-            }
-          );
-
-          if (successPanel) {
-            successPanel.hidden =
-              true;
-          }
-
-          updatePanels();
-
-          form.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-          });
-        }
-      );
     })();
   </script>
 
