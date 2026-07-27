@@ -1,83 +1,1408 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NV Works — Ambientenbeleuchtung &amp; Sternenhimmel</title>
-<link rel="icon" href="nv-works-logo.jpeg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="NV Works – Ambientebeleuchtung und Sternenhimmel für Fahrzeuge.">
+  <meta name="theme-color" content="#080808">
+  <title>NV Works | Ambientebeleuchtung & Sternenhimmel</title>
+
+  <link rel="icon" href="nv-works-logo.png" type="image/png">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
+
 <body>
+  <header class="header" id="top">
+    <div class="container nav-wrap">
+      <a class="logo" href="index.html" aria-label="NV Works Startseite">
+        <img src="nv-works-logo.png" alt="NV Works Logo">
+      </a>
 
-<nav class="nav">
-  <div class="nav-inner">
-    <a href="index.html" class="brand">
-     <img src="images/nv-works-logo.jpeg" alt="NV Works" class="brand-logo">
-    <a href="quote.html" class="nav-cta">Angebot anfordern</a>
-  </div>
-</nav>
+      <button class="menu-btn" aria-label="Menü öffnen" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
 
-<header class="hero">
-  <canvas id="starfield"></canvas>
-  <div class="hero-content">
-    <p class="eyebrow">NV Works — Fahrzeugveredelung nach Maß</p>
-    <h1>Ambientenbeleuchtung<br>&amp; Sternenhimmel<br>für Ihr Fahrzeug</h1>
-    <p class="hero-sub">Verleihen Sie Ihrem Fahrzeug eine exklusive Optik mit einer professionell nachgerüsteten Ambientebeleuchtung oder einem individuellen Sternenhimmel — präzise verbaut und auf Ihre Wünsche abgestimmt.</p>
-    <a href="quote.html" class="btn-primary">Jetzt Angebot anfordern</a>
-  </div>
-</header>
-
-<section class="intro">
-  <div class="intro-grid">
-    <div class="intro-card">
-      <h2>Ambientenbeleuchtung</h2>
-      <p>Die Ambientebeleuchtung kann individuell konfiguriert werden und ist je nach System bequem per Smartphone steuerbar. Farben, Helligkeit und Lichteffekte lassen sich flexibel anpassen und sorgen für ein einzigartiges Fahrerlebnis.</p>
-      <p>Für BMW, Mercedes-Benz, Audi und viele weitere Fahrzeugmarken ist zudem eine originale Integration möglich — programmiert, damit sie sich wie die werksseitige Ausstattung direkt über das Fahrzeugmenü bedienen lässt.</p>
+      <nav class="nav">
+        <a href="#services">Leistungen</a>
+        <a href="#benefits">Warum wir</a>
+        <a href="#brands">Fahrzeuge</a>
+        <a href="#process">Ablauf</a>
+        <a class="nav-button" href="quote.html">Angebot anfragen</a>
+      </nav>
     </div>
-    <div class="intro-card">
-      <h2>Individueller Sternenhimmel</h2>
-      <p>Neben der Ambientebeleuchtung fertige ich auch individuelle Sternenhimmel für den Fahrzeughimmel an. Jeder Sternenhimmel wird nach Ihren Vorstellungen geplant — von der Sternenanzahl über das Material bis zur Farbe — und mit höchster Sorgfalt eingebaut.</p>
+  </header>
+
+  <main>
+    <section class="hero">
+      <canvas class="stars" aria-hidden="true"></canvas>
+
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">
+            <i></i>
+            Fahrzeugveredelung nach Maß
+          </p>
+
+          <h1>
+            Licht, das Ihr Fahrzeug
+            <span>unverwechselbar</span> macht.
+          </h1>
+
+          <p class="lead">
+            Professionell nachgerüstete Ambientebeleuchtung und individuell
+            angefertigte Sternenhimmel – präzise verbaut, modern steuerbar und
+            passend zu Ihrem Fahrzeug.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn primary" href="quote.html">
+              Angebot anfragen <b>→</b>
+            </a>
+
+            <a class="btn secondary" href="#services">
+              Leistungen ansehen
+            </a>
+          </div>
+
+          <div class="proof">
+            <div>
+              <strong>OEM-Look</strong>
+              <span>Saubere Integration</span>
+            </div>
+
+            <div>
+              <strong>Individuell</strong>
+              <span>Nach Ihren Wünschen</span>
+            </div>
+
+            <div>
+              <strong>Professionell</strong>
+              <span>Hochwertiger Einbau</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-logo reveal">
+          <div class="logo-card">
+            <img src="nv-works-logo.png" alt="NV Works">
+          </div>
+
+          <div class="float-card card-a">
+            <b>✦</b>
+
+            <span>
+              <strong>Sternenhimmel</strong>
+              <small>Individuelle Lichtfasern</small>
+            </span>
+          </div>
+
+          <div class="float-card card-b">
+            <b>◉</b>
+
+            <span>
+              <strong>Ambientelicht</strong>
+              <small>Farben & Effekte</small>
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section light" id="services">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <p class="kicker">Unsere Leistungen</p>
+            <h2>Premium-Lichtdesign für Ihren Innenraum.</h2>
+          </div>
+
+          <p>
+            Jede Installation wird auf Fahrzeug, Ausstattung und gewünschte
+            Wirkung abgestimmt. Das Ergebnis ist ein hochwertiger, sauberer und
+            individueller Innenraum.
+          </p>
+        </div>
+
+        <div class="service-grid">
+          <article class="service-card reveal">
+            <span class="number">01</span>
+
+            <div class="service-icon lines">
+              <i></i>
+              <i></i>
+              <i></i>
+            </div>
+
+            <h3>Ambientebeleuchtung</h3>
+
+            <p>
+              Flexible Farben, Helligkeit und Lichteffekte. Je nach System
+              bequem per Smartphone oder über das Fahrzeugmenü steuerbar.
+            </p>
+
+            <ul>
+              <li>Mehrfarbige Beleuchtung</li>
+              <li>Smartphone-Steuerung</li>
+              <li>Originalgetreue Integration</li>
+              <li>Professioneller Einbau</li>
+            </ul>
+
+            <a href="quote.html?service=ambient">
+              Ambientebeleuchtung anfragen →
+            </a>
+          </article>
+
+          <article class="service-card dark-card reveal">
+            <span class="number">02</span>
+
+            <div class="service-icon dots">
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+            </div>
+
+            <h3>Individueller Sternenhimmel</h3>
+
+            <p>
+              Sternenanzahl, Farbe, Material und zusätzliche Effekte werden
+              nach Ihren Vorstellungen ausgewählt.
+            </p>
+
+            <ul>
+              <li>Individuelle Sternenanzahl</li>
+              <li>Weiß oder RGBW</li>
+              <li>Twinkle- und Shooting-Star-Effekt</li>
+              <li>Optionales Wunschlogo</li>
+            </ul>
+
+            <a href="quote.html?service=starlight">
+              Sternenhimmel anfragen →
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section black" id="benefits">
+      <div class="container">
+        <div class="section-head one reveal">
+          <div>
+            <p class="kicker">Warum NV Works</p>
+            <h2>Details machen den Unterschied.</h2>
+          </div>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature reveal">
+            <span>01</span>
+            <h3>Individuelle Planung</h3>
+
+            <p>
+              Fahrzeug, gewünschte Optik, Farben und Funktionen werden vor dem
+              Einbau abgestimmt.
+            </p>
+          </article>
+
+          <article class="feature reveal">
+            <span>02</span>
+            <h3>Hochwertige Materialien</h3>
+
+            <p>
+              Langlebige Komponenten und eine saubere, professionelle
+              Verarbeitung.
+            </p>
+          </article>
+
+          <article class="feature reveal">
+            <span>03</span>
+            <h3>Saubere Integration</h3>
+
+            <p>
+              Ordentlicher Einbau für ein hochwertiges und möglichst
+              werksnahes Ergebnis.
+            </p>
+          </article>
+
+          <article class="feature reveal">
+            <span>04</span>
+            <h3>Persönliche Beratung</h3>
+
+            <p>
+              Jede Anfrage wird persönlich geprüft und passend zum Projekt
+              beantwortet.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section white" id="brands">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <p class="kicker">Fahrzeugmarken</p>
+            <h2>Für nahezu alle Hersteller.</h2>
+          </div>
+
+          <p>
+            Ihre Marke ist nicht aufgeführt? Wählen Sie im Formular einfach
+            „Andere“.
+          </p>
+        </div>
+
+        <div class="brands reveal">
+          <span>Acura</span>
+          <span>Aston Martin</span>
+          <span>Audi</span>
+          <span>Bentley</span>
+          <span>BMW</span>
+          <span>Cadillac</span>
+          <span>Chevrolet</span>
+          <span>Chrysler</span>
+          <span>Dodge</span>
+          <span>Ferrari</span>
+          <span>Ford</span>
+          <span>GMC</span>
+          <span>Jaguar</span>
+          <span>Jeep</span>
+          <span>Lamborghini</span>
+          <span>Land Rover</span>
+          <span>Lexus</span>
+          <span>Maserati</span>
+          <span>McLaren</span>
+          <span>Mercedes-Benz</span>
+          <span>Porsche</span>
+          <span>Rolls-Royce</span>
+          <span>Tesla</span>
+          <span>Andere</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section light" id="process">
+      <div class="container">
+        <div class="section-head one reveal">
+          <div>
+            <p class="kicker">So funktioniert es</p>
+            <h2>In drei Schritten zum individuellen Fahrzeug.</h2>
+          </div>
+        </div>
+
+        <div class="steps">
+          <article class="step reveal">
+            <b>1</b>
+            <h3>Anfrage senden</h3>
+
+            <p>
+              Teilen Sie uns Fahrzeug, Leistung und bevorzugten Termin mit.
+            </p>
+          </article>
+
+          <article class="step reveal">
+            <b>2</b>
+            <h3>Beratung & Angebot</h3>
+
+            <p>
+              Wir prüfen Ihre Angaben und erstellen ein individuelles Angebot.
+            </p>
+          </article>
+
+          <article class="step reveal">
+            <b>3</b>
+            <h3>Professioneller Einbau</h3>
+
+            <p>
+              Nach Terminbestätigung wird Ihr Projekt sorgfältig umgesetzt.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta reveal">
+          <div>
+            <p class="kicker">Ihr Projekt beginnt hier</p>
+
+            <h2>
+              Machen wir Ihr Fahrzeug zu einem echten Blickfang.
+            </h2>
+
+            <p>
+              Senden Sie Ihre Fahrzeugdaten und Wünsche. Wir melden uns mit
+              einer persönlichen Einschätzung.
+            </p>
+          </div>
+
+          <a class="btn primary" href="quote.html">
+            Jetzt Anfrage senden →
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <img src="nv-works-logo.png" alt="NV Works">
+
+        <p>
+          Ambientebeleuchtung & Sternenhimmel für Fahrzeuge.
+        </p>
+      </div>
+
+      <div>
+        <strong>Navigation</strong>
+        <a href="#services">Leistungen</a>
+        <a href="#brands">Fahrzeuge</a>
+        <a href="#process">Ablauf</a>
+      </div>
+
+      <div>
+        <strong>Kontakt</strong>
+        <span>Persönliche Beratung</span>
+        <span>Termine nach Vereinbarung</span>
+        <a href="quote.html">Angebot anfragen</a>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <span>
+        © <span data-year></span> NV Works. Alle Rechte vorbehalten.
+      </span>
+
+      <a href="#top">Nach oben ↑</a>
+    </div>
+  </footer>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+         display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 54px;
+    }
+
+    .close {
+      border: none;
+      background: transparent;
+      font-size: 48px;
+      line-height: 1;
+      cursor: pointer;
+      color: var(--black);
+    }
+
+    .mobile-links {
+      display: grid;
+      gap: 20px;
+      border-left: 4px solid rgba(173, 51, 51, 0.28);
+      padding-left: 28px;
+    }
+
+    .mobile-links a {
+      font-size: clamp(42px, 11vw, 70px);
+      font-weight: 950;
+      letter-spacing: -4px;
+      line-height: 0.95;
+    }
+
+    .hero {
+      padding: 74px 0 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(rgba(173,51,51,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(173,51,51,0.06) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: radial-gradient(circle at 50% 28%, black 0%, transparent 62%);
+      pointer-events: none;
+    }
+
+    .hero-layout {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 0.8fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid var(--line);
+      background: white;
+      border-radius: 999px;
+      padding: 12px 18px;
+      color: var(--gray);
+      font-weight: 900;
+      margin-bottom: 28px;
+      box-shadow: 0 12px 40px rgba(31,29,30,0.04);
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      background: var(--red);
+      border-radius: 50%;
+    }
+
+    h1 {
+      font-size: clamp(58px, 8vw, 112px);
+      line-height: 0.86;
+      letter-spacing: -6px;
+      font-weight: 950;
+    }
+
+    h1 em,
+    h2 em {
+      font-family: Georgia, serif;
+      font-weight: 400;
+      color: var(--red);
+    }
+
+    .hero p {
+      margin: 30px 0 36px;
+      color: var(--gray);
+      font-size: clamp(22px, 3vw, 30px);
+      line-height: 1.48;
+      max-width: 760px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 18px 30px;
+      font-size: 19px;
+      font-weight: 950;
+      border: 1px solid var(--line);
+      transition: 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .btn-red {
+      background: var(--red);
+      border-color: var(--red);
+      color: white;
+      box-shadow: 0 18px 46px rgba(173, 51, 51, 0.24);
+    }
+
+    .btn-white {
+      background: white;
+      color: var(--black);
+    }
+
+    .dashboard-card {
+      background: var(--black);
+      color: white;
+      border-radius: 42px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .dashboard-card::before {
+      content: "";
+      position: absolute;
+      width: 240px;
+      height: 240px;
+      right: -80px;
+      top: -80px;
+      background: radial-gradient(circle, rgba(173,51,51,0.44), transparent 65%);
+    }
+
+    .dash-label {
+      color: #B7B0B1;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      font-size: 13px;
+      margin-bottom: 28px;
+      position: relative;
+    }
+
+    .dash-title {
+      font-size: 38px;
+      line-height: 0.98;
+      letter-spacing: -2px;
+      font-weight: 950;
+      margin-bottom: 28px;
+      position: relative;
+    }
+
+    .system-list {
+      display: grid;
+      gap: 12px;
+      position: relative;
+    }
+
+    .system-item {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 24px;
+      padding: 18px;
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      gap: 14px;
+      align-items: start;
+    }
+
+    .system-icon {
+      width: 42px;
+      height: 42px;
+      background: rgba(173,51,51,0.18);
+      color: #ffdddd;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      font-weight: 950;
+    }
+
+    .system-item strong {
+      display: block;
+      font-size: 19px;
+      margin-bottom: 5px;
+    }
+
+    .system-item span {
+      color: #BDB7B8;
+      line-height: 1.35;
+      font-size: 15px;
+    }
+
+    .stats {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      position: relative;
+    }
+
+    .stat {
+      background: white;
+      color: var(--black);
+      border-radius: 20px;
+      padding: 18px;
+    }
+
+    .stat b {
+      display: block;
+      font-size: 28px;
+      letter-spacing: -1px;
+    }
+
+    .stat small {
+      color: var(--gray);
+      font-weight: 800;
+    }
+
+    .section {
+      padding: 90px 0;
+    }
+
+    .section-head {
+      max-width: 850px;
+      margin-bottom: 42px;
+    }
+
+    .section-head.center {
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .label {
+      color: #9B9495;
+      text-transform: uppercase;
+      letter-spacing: 7px;
+      font-size: 15px;
+      margin-bottom: 22px;
+    }
+
+    h2 {
+      font-size: clamp(46px, 7vw, 86px);
+      line-height: 0.9;
+      letter-spacing: -5px;
+      font-weight: 950;
+      margin-bottom: 22px;
+    }
+
+    .section-head p {
+      color: var(--gray);
+      font-size: 24px;
+      line-height: 1.52;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: 1px solid var(--line);
+      border-radius: 42px;
+      overflow: hidden;
+      background: white;
+      box-shadow: 0 22px 70px rgba(31,29,30,0.06);
+    }
+
+    .service {
+      padding: 34px;
+      min-height: 310px;
+      border-right: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .service:last-child {
+      border-right: none;
+    }
+
+    .service-code {
+      width: 56px;
+      height: 56px;
+      border-radius: 18px;
+      background: rgba(173,51,51,0.10);
+      color: var(--red);
+      display: grid;
+      place-items: center;
+      font-weight: 950;
+      margin-bottom: 40px;
+    }
+
+    .service h3 {
+      font-size: 32px;
+      letter-spacing: -2px;
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    .service p {
+      color: var(--gray);
+      font-size: 19px;
+      line-height: 1.45;
+    }
+
+    .dark-section {
+      width: min(94%, 1320px);
+      margin: auto;
+      background:
+        radial-gradient(circle at 80% 0%, rgba(173,51,51,0.18), transparent 32%),
+        var(--dark);
+      color: white;
+      border-radius: 54px;
+      padding: 80px 0;
+      box-shadow: var(--shadow);
+    }
+
+    .dark-section .section-head p {
+      color: #BDB7B8;
+    }
+
+    .process {
+      display: grid;
+      gap: 16px;
+    }
+
+    .process-row {
+      background: white;
+      color: var(--black);
+      border-radius: 32px;
+      padding: 30px;
+      display: grid;
+      grid-template-columns: 100px 1fr 140px;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .number {
+      font-size: 46px;
+      font-weight: 950;
+      color: var(--red);
+      letter-spacing: -3px;
+    }
+
+    .process-row h3 {
+      font-size: 32px;
+      letter-spacing: -2px;
+      margin-bottom: 8px;
+    }
+
+    .process-row p {
+      color: var(--gray);
+      font-size: 20px;
+      line-height: 1.45;
+    }
+
+    .tag {
+      justify-self: end;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 10px 15px;
+      color: var(--gray);
+      font-weight: 900;
+      font-size: 13px;
+    }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    .work-card {
+      border: 1px solid var(--line);
+      border-radius: 42px;
+      background: white;
+      overflow: hidden;
+      box-shadow: 0 22px 70px rgba(31,29,30,0.06);
+    }
+
+    .work-top {
+      height: 230px;
+      background:
+        linear-gradient(135deg, rgba(173,51,51,0.14), transparent),
+        var(--soft);
+      display: grid;
+      place-items: center;
+      position: relative;
+    }
+
+    .mock {
+      width: 72%;
+      height: 62%;
+      border-radius: 24px;
+      background: white;
+      border: 1px solid var(--line);
+      box-shadow: 0 20px 60px rgba(31,29,30,0.12);
+      display: grid;
+      place-items: center;
+      color: var(--red);
+      font-size: 42px;
+      font-weight: 950;
+    }
+
+    .work-body {
+      padding: 32px;
+    }
+
+    .work-body small {
+      color: var(--red);
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      font-weight: 900;
+    }
+
+    .work-body h3 {
+      font-size: 36px;
+      letter-spacing: -2px;
+      margin: 14px 0 12px;
+    }
+
+    .work-body p {
+      color: var(--gray);
+      font-size: 20px;
+      line-height: 1.5;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .team-card {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 42px;
+      padding: 24px;
+      box-shadow: 0 22px 70px rgba(31,29,30,0.06);
+    }
+
+    .photo {
+      height: 280px;
+      border-radius: 30px;
+      background:
+        radial-gradient(circle at center, rgba(173,51,51,0.18), transparent 50%),
+        var(--soft);
+      display: grid;
+      place-items: center;
+      color: var(--red);
+      font-size: 64px;
+      font-weight: 950;
+      margin-bottom: 24px;
+      overflow: hidden;
+    }
+
+    .photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .team-card h3 {
+      font-size: 30px;
+      letter-spacing: -1.5px;
+      margin-bottom: 8px;
+    }
+
+    .team-card p {
+      color: var(--gray);
+      font-size: 19px;
+    }
+
+    .cta {
+      padding: 90px 0;
+    }
+
+    .cta-card {
+      background:
+        radial-gradient(circle at top right, rgba(173,51,51,0.20), transparent 34%),
+        var(--black);
+      color: white;
+      border-radius: 54px;
+      padding: 58px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 32px;
+      align-items: center;
+      box-shadow: var(--shadow);
+    }
+
+    .cta-card h2 {
+      color: white;
+      max-width: 760px;
+    }
+
+    .cta-card p {
+      color: #BDB7B8;
+      font-size: 24px;
+      line-height: 1.5;
+      max-width: 720px;
+    }
+
+    footer {
+      padding: 45px 0 80px;
+      text-align: center;
+      color: #918B8C;
+    }
+
+    .footer-line {
+      border-top: 1px solid var(--line);
+      margin-bottom: 34px;
+    }
+
+    .footer-logo {
+      justify-content: center;
+      margin-bottom: 14px;
+    }
+
+    .footer-logo img {
+      width: 170px;
+    }
+
+    .footer-links {
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      flex-wrap: wrap;
+      font-size: 19px;
+    }
+
+    @media (max-width: 980px) {
+      .desktop-nav {
+        display: none;
+      }
+
+      .menu-btn {
+        display: block;
+      }
+
+      .hero-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .service-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .process-row {
+        grid-template-columns: 1fr;
+      }
+
+      .tag {
+        justify-self: start;
+      }
+
+      .work-grid,
+      .team-grid,
+      .cta-card {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 620px) {
+      header {
+        padding: 14px 0;
+      }
+
+      .nav {
+        height: 76px;
+        padding: 0 14px 0 22px;
+      }
+
+      .brand img {
+        width: 118px;
+      }
+
+      .scale-pill {
+        padding: 6px 9px;
+        font-size: 8px;
+        letter-spacing: 1.7px;
+      }
+
+      h1 {
+        font-size: clamp(58px, 16vw, 82px);
+        letter-spacing: -4px;
+      }
+
+      h2 {
+        letter-spacing: -3px;
+      }
+
+      .hero {
+        padding-top: 56px;
+      }
+
+      .buttons {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .dashboard-card,
+      .cta-card {
+        border-radius: 38px;
+        padding: 34px;
+      }
+
+      .service-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .service {
+        border-right: none;
+        border-bottom: 1px solid var(--line);
+        min-height: 260px;
+      }
+
+      .service:last-child {
+        border-bottom: none;
+      }
+
+      .dark-section {
+        width: 100%;
+        border-radius: 40px;
+      }
+
+      .work-top {
+        height: 190px;
+      }
+
+      .photo {
+        height: 240px;
+      }
+
+      .footer-logo img {
+        width: 140px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <div class="nav">
+        <a href="index.html" class="brand" aria-label="Aureon Scale Home">
+          <img src="aureon-wordmark.png" alt="Aureon logo">
+          <span class="scale-pill">SCALE</span>
+        </a>
+
+        <nav class="desktop-nav">
+          <a href="#services">Services</a>
+          <a href="#process">Process</a>
+          <a href="#work">Work</a>
+          <a href="#team">Team</a>
+          <a href="contact.html" class="nav-button">Start Project</a>
+        </nav>
+
+        <button class="menu-btn" onclick="openMenu()" aria-label="Open menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="menu-card">
+      <div class="menu-top">
+        <a href="index.html" class="brand">
+          <img src="aureon-wordmark.png" alt="Aureon logo">
+          <span class="scale-pill">SCALE</span>
+        </a>
+        <button class="close" onclick="closeMenu()">×</button>
+      </div>
+
+      <nav class="mobile-links">
+        <a href="#services" onclick="closeMenu()">Services</a>
+        <a href="#process" onclick="closeMenu()">Process</a>
+        <a href="#work" onclick="closeMenu()">Work</a>
+        <a href="#team" onclick="closeMenu()">Team</a>
+        <a href="contact.html">Contact</a>
+      </nav>
     </div>
   </div>
-</section>
 
-<section class="services">
-  <p class="eyebrow center">Meine Leistungen</p>
-  <ul class="service-list">
-    <li>Individuelle Ambientebeleuchtung für Fahrzeuge</li>
-    <li>Smartphone-Steuerung (je nach System)</li>
-    <li>Originalgetreue Integration für BMW, Mercedes-Benz, Audi und weitere Marken</li>
-    <li>Individuell gestaltete Sternenhimmel</li>
-    <li>Professioneller Einbau mit hochwertigen Materialien</li>
-  </ul>
-</section>
+  <main>
+    <section class="hero">
+      <div class="container hero-layout">
+        <div>
+          <div class="eyebrow">
+            <span class="dot"></span>
+            Digital systems for serious growth
+          </div>
 
-<section class="brands">
-  <p class="eyebrow center">Fahrzeugmarken, die ich bediene</p>
-  <div class="brand-grid">
-    <span>Acura</span><span>Aston Martin</span><span>Audi</span><span>Bentley</span>
-    <span>BMW</span><span>Cadillac</span><span>Chevrolet</span><span>Chrysler</span>
-    <span>Dodge</span><span>Ferrari</span><span>Ford</span><span>GMC</span>
-    <span>Jaguar</span><span>Jeep</span><span>Lamborghini</span><span>Land Rover</span>
-    <span>Lexus</span><span>Maserati</span><span>McLaren</span><span>Mercedes-Benz</span>
-    <span>Porsche</span><span>Rolls-Royce</span><span>Tesla</span><span>Andere</span>
-  </div>
-</section>
+          <h1>
+            Build the system behind your <em>business growth.</em>
+          </h1>
 
-<section class="cta">
-  <h2>Machen wir Ihr Fahrzeug<br>zu einem echten Blickfang.</h2>
-  <p>Kontaktieren Sie mich gerne für eine persönliche Beratung und ein individuelles Angebot.</p>
-  <a href="quote.html" class="btn-primary">Angebot anfordern</a>
-</section>
+          <p>
+            Aureon Scale builds websites, AI agents, dashboards, content systems,
+            and paid ad funnels that work together like one clean growth engine.
+          </p>
 
-<footer class="footer">
-  <img src="images/nv-works-logo.jpeg" alt="NV Works" class="footer-logo">
-  <p>© <span id="year"></span> NV Works — Ambientenbeleuchtung &amp; Sternenhimmel</p>
-</footer>
+          <div class="buttons">
+            <a href="contact.html" class="btn btn-red">Start a project</a>
+            <a href="#services" class="btn btn-white">View services</a>
+          </div>
+        </div>
 
-<script src="js/script.js"></script>
+        <div class="dashboard-card">
+          <div class="dash-label">Growth engine</div>
+
+          <div class="dash-title">
+            One setup for leads, systems, and execution.
+          </div>
+
+          <div class="system-list">
+            <div class="system-item">
+              <div class="system-icon">01</div>
+              <div>
+                <strong>Website foundation</strong>
+                <span>Clear offer, strong trust, booking path, and conversion flow.</span>
+              </div>
+            </div>
+
+            <div class="system-item">
+              <div class="system-icon">02</div>
+              <div>
+                <strong>Automation layer</strong>
+                <span>AI agents, forms, follow-ups, dashboards, and workflow support.</span>
+              </div>
+            </div>
+
+            <div class="system-item">
+              <div class="system-icon">03</div>
+              <div>
+                <strong>Growth channel</strong>
+                <span>Content, paid ads, landing pages, and performance testing.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="stats">
+            <div class="stat">
+              <b>4</b>
+              <small>Core services</small>
+            </div>
+            <div class="stat">
+              <b>1</b>
+              <small>Connected system</small>
+            </div>
+            <div class="stat">
+              <b>∞</b>
+              <small>Built to scale</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-head center">
+          <div class="label">What we build</div>
+          <h2>Services designed to work <em>together.</em></h2>
+          <p>
+            Not random marketing. Not just a nice page. We build the digital layer
+            that helps a business look professional, respond faster, and grow cleaner.
+          </p>
+        </div>
+
+        <div class="service-grid">
+          <div class="service">
+            <div>
+              <div class="service-code">WEB</div>
+              <h3>Websites</h3>
+              <p>Modern websites, landing pages, booking flows, e-commerce, and service pages built to convert.</p>
+            </div>
+          </div>
+
+          <div class="service">
+            <div>
+              <div class="service-code">AI</div>
+              <h3>AI Agents</h3>
+              <p>AI response systems for calls, messages, reminders, FAQs, lead handling, and follow-up.</p>
+            </div>
+          </div>
+
+          <div class="service">
+            <div>
+              <div class="service-code">OPS</div>
+              <h3>Dashboards</h3>
+              <p>Admin panels, databases, reporting views, and internal tools that make operations cleaner.</p>
+            </div>
+          </div>
+
+          <div class="service">
+            <div>
+              <div class="service-code">ADS</div>
+              <h3>Growth</h3>
+              <p>Content systems, paid ads, landing pages, creative testing, and brand strategy for scale.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="dark-section" id="process">
+      <div class="container">
+        <div class="section-head">
+          <div class="label">How we work</div>
+          <h2>Clear process. Better execution.</h2>
+          <p>
+            Every project starts with the business goal, then we build the website,
+            systems, and growth path around it.
+          </p>
+        </div>
+
+        <div class="process">
+          <div class="process-row">
+            <div class="number">01</div>
+            <div>
+              <h3>Map the business</h3>
+              <p>We understand your offer, customer journey, services, and what needs to happen online.</p>
+            </div>
+            <div class="tag">Strategy</div>
+          </div>
+
+          <div class="process-row">
+            <div class="number">02</div>
+            <div>
+              <h3>Build the system</h3>
+              <p>We design and develop the site, dashboards, AI workflows, forms, and conversion structure.</p>
+            </div>
+            <div class="tag">Build</div>
+          </div>
+
+          <div class="process-row">
+            <div class="number">03</div>
+            <div>
+              <h3>Launch and grow</h3>
+              <p>We support the launch with content, paid ads, tracking, testing, and growth improvements.</p>
+            </div>
+            <div class="tag">Scale</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="work">
+      <div class="container">
+        <div class="section-head">
+          <div class="label">Showcase</div>
+          <h2>Useful builds for real businesses.</h2>
+          <p>
+            Use this area to show demo projects, client work, before/after redesigns,
+            or local business website examples.
+          </p>
+        </div>
+
+        <div class="work-grid">
+          <div class="work-card">
+            <div class="work-top">
+              <div class="mock">PF</div>
+            </div>
+            <div class="work-body">
+              <small>Website + booking</small>
+              <h3>Pure Finish SoCal</h3>
+              <p>A clean service website concept with booking flow, trust sections, and stronger presentation.</p>
+            </div>
+          </div>
+
+          <div class="work-card">
+            <div class="work-top">
+              <div class="mock">AI</div>
+            </div>
+            <div class="work-body">
+              <small>Automation setup</small>
+              <h3>AI Follow-Up System</h3>
+              <p>An automated lead response flow designed to reduce missed messages and speed up customer replies.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="team">
+      <div class="container">
+        <div class="section-head center">
+          <div class="label">Aureon Scale team</div>
+          <h2>Small team. Sharp execution.</h2>
+          <p>
+            Add your team photos, names, and positions here so clients can see who is behind the work.
+          </p>
+        </div>
+
+        <div class="team-grid">
+          <div class="team-card">
+            <div class="photo">01</div>
+            <h3>Your Name</h3>
+            <p>Content Creator / Growth Support</p>
+          </div>
+
+          <div class="team-card">
+            <div class="photo">02</div>
+            <h3>Team Member</h3>
+            <p>Web Developer / AI Automation</p>
+          </div>
+
+          <div class="team-card">
+            <div class="photo">03</div>
+            <h3>Team Member</h3>
+            <p>Sales / Client Acquisition</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="container">
+        <div class="cta-card">
+          <div>
+            <div class="label">Next step</div>
+            <h2>Ready to build a cleaner digital system?</h2>
+            <p>
+              Tell us what you need. We will map the right mix of website, AI,
+              dashboard, content, and growth support for your business.
+            </p>
+          </div>
+
+          <div class="buttons">
+            <a href="contact.html" class="btn btn-red">Contact Aureon Scale</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-line"></div>
+
+      <a href="index.html" class="brand footer-logo">
+        <img src="aureon-wordmark.png" alt="Aureon logo">
+        <span class="scale-pill">SCALE</span>
+      </a>
+
+      <p>Websites, AI systems, dashboards, content, ads, and growth support.</p>
+
+      <div class="footer-links">
+        <a href="#services">Services</a>
+        <a href="#process">Process</a>
+        <a href="#work">Work</a>
+        <a href="#team">Team</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function openMenu() {
+      document.getElementById("mobileMenu").classList.add("active");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeMenu() {
+      document.getElementById("mobileMenu").classList.remove("active");
+      document.body.style.overflow = "auto";
+    }
+  </script>
 </body>
 </html>
