@@ -1,568 +1,188 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Individuelles Angebot von NV Works anfragen.">
-  <meta name="theme-color" content="#080808">
-  <title>Angebot anfragen | NV Works</title>
-
-  <link rel="icon" href="nv-works-logo.png" type="image/png">
-  <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta name="description" content="Kontaktieren Sie NV Works telefonisch und finden Sie unseren Standort in Apple Karten.">
+ <meta name="theme-color" content="#050506">
+ <title>Kontakt & Anfahrt | NV Works</title>
+ <link rel="icon" type="image/png" href="nv-works-logo.png">
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@500;600;700;800&display=swap" rel="stylesheet">
+ <style>
+   :root { --black:#050506; --red:#dc001c; --bright:#ff1f3d; --text:#f4f4f5; --muted:#aaaab4; --line:rgba(255,255,255,.13); --header:84px; }
+   * { box-sizing:border-box; }
+   html { scroll-behavior:smooth; }
+   body { min-width:320px; margin:0; overflow-x:hidden; color:var(--text); background:var(--black); font-family:Inter,system-ui,sans-serif; }
+   body.menu-open { overflow:hidden; }
+   a { color:inherit; text-decoration:none; }
+   img { display:block; max-width:100%; }
+   button { font:inherit; }
+   .container { width:min(calc(100% - 40px),1220px); margin-inline:auto; }
+   .site-header { position:fixed; inset:0 0 auto; z-index:1000; height:var(--header); border-bottom:1px solid var(--line); background:rgba(5,5,6,.94); backdrop-filter:blur(18px); }
+   .nav-inner { height:100%; display:flex; align-items:center; justify-content:space-between; gap:30px; }
+   .brand { position:relative; z-index:1003; display:flex; align-items:center; }
+   .brand img { width:140px; max-height:64px; object-fit:contain; filter:drop-shadow(0 8px 20px rgba(220,0,28,.2)); }
+   .brand-text { display:none; font:800 1.05rem Orbitron,sans-serif; letter-spacing:.08em; }
+   .brand-text strong { color:var(--bright); }
+   .nav { display:flex; align-items:center; gap:30px; }
+   .nav a { color:#d0d0d6; font-size:.86rem; font-weight:700; }
+   .nav a:hover,.nav a:focus-visible { color:#fff; }
+   .nav .nav-cta { display:inline-flex; min-height:44px; align-items:center; padding:0 19px; border:1px solid rgba(255,31,61,.55); color:white; background:rgba(220,0,28,.12); }
+   .nav .nav-cta:hover { background:var(--red); }
+   .menu-button { display:none; position:relative; z-index:1004; width:48px; height:46px; border:1px solid var(--line); background:#111114; cursor:pointer; }
+   .menu-button span { position:absolute; left:13px; width:21px; height:2px; background:#fff; transition:transform .25s,top .25s,opacity .25s; }
+   .menu-button span:nth-child(1) { top:14px; } .menu-button span:nth-child(2) { top:21px; } .menu-button span:nth-child(3) { top:28px; }
+   .menu-button[aria-expanded=true] span:nth-child(1) { top:21px; transform:rotate(45deg); }
+   .menu-button[aria-expanded=true] span:nth-child(2) { opacity:0; }
+   .menu-button[aria-expanded=true] span:nth-child(3) { top:21px; transform:rotate(-45deg); }
+   .hero { position:relative; overflow:hidden; padding:calc(var(--header) + 90px) 0 95px; background:radial-gradient(circle at 82% 27%,rgba(220,0,28,.2),transparent 29%),radial-gradient(circle at 8% 83%,rgba(220,0,28,.1),transparent 28%),linear-gradient(135deg,#0b0b0e,#050506); }
+   .hero:before { content:""; position:absolute; inset:0; opacity:.15; pointer-events:none; background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px); background-size:72px 72px; mask-image:linear-gradient(#000,transparent); }
+   .hero .container { position:relative; }
+   .back { display:inline-block; margin-bottom:55px; color:#bcbcc5; font-size:.83rem; font-weight:700; }
+   .back:hover { color:white; }
+   .kicker { display:flex; align-items:center; gap:12px; margin:0 0 20px; color:#c3c3cc; font:700 .7rem Orbitron,sans-serif; letter-spacing:.17em; text-transform:uppercase; }
+   .kicker:before { content:""; display:block; width:34px; height:2px; background:var(--bright); box-shadow:0 0 12px var(--bright); }
+   h1 { max-width:900px; margin:0; font:800 clamp(2.7rem,6vw,5.7rem)/1.04 Orbitron,sans-serif; letter-spacing:-.055em; text-transform:uppercase; }
+   h1 span { color:var(--bright); }
+   .hero p:last-child { max-width:680px; margin:26px 0 0; color:var(--muted); font-size:1.05rem; line-height:1.75; }
+   .contact-area { padding:90px 0 115px; background:#f2f2f3; color:#16161a; }
+   .intro { max-width:780px; margin:0 0 39px; }
+   .intro h2 { margin:0; font-size:clamp(2rem,4vw,3.5rem); line-height:1.08; letter-spacing:-.05em; }
+   .intro p { margin:18px 0 0; color:#62626a; line-height:1.75; }
+   .cards { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; }
+   .card { display:flex; flex-direction:column; min-height:340px; padding:40px; border:1px solid #dedee3; background:white; box-shadow:0 22px 60px rgba(0,0,0,.08); }
+   .card.dark { color:white; border-color:var(--line); background:radial-gradient(circle at 85% 8%,rgba(220,0,28,.22),transparent 38%),linear-gradient(145deg,#19191e,#08080a); }
+   .card-number { color:var(--red); font:700 .7rem Orbitron,sans-serif; letter-spacing:.15em; }
+   .dark .card-number { color:var(--bright); }
+   .card h3 { margin:31px 0 12px; font:700 clamp(1.5rem,2.5vw,2.3rem)/1.15 Orbitron,sans-serif; text-transform:uppercase; }
+   .card p { max-width:450px; margin:0 0 28px; color:#686871; line-height:1.7; }
+   .card.dark p { color:#b5b5bd; }
+   .card .detail { margin:0 0 25px; font-size:1.15rem; font-weight:800; overflow-wrap:anywhere; }
+   .card .detail a { color:var(--bright); }
+   .button { display:inline-flex; min-height:54px; align-items:center; justify-content:center; gap:12px; align-self:flex-start; margin-top:auto; padding:0 24px; border:1px solid transparent; color:white; background:linear-gradient(135deg,var(--bright),#74000e); font:700 .73rem Orbitron,sans-serif; letter-spacing:.04em; text-transform:uppercase; transition:transform .2s,box-shadow .2s; }
+   .button:hover { transform:translateY(-3px); box-shadow:0 15px 35px rgba(220,0,28,.3); }
+   .button.secondary { border-color:#9f9fa9; color:#17171a; background:transparent; }
+   .button.secondary:hover { box-shadow:none; background:#ededf0; }
+   .note { margin:30px 0 0; color:#696971; font-size:.88rem; line-height:1.6; }
+   .instagram { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:22px; margin-top:24px; padding:30px 40px; border:1px solid #dedee3; background:white; }
+   .instagram h3 { margin:0 0 8px; font:700 1.3rem Orbitron,sans-serif; text-transform:uppercase; }
+   .instagram p { margin:0; color:#686871; line-height:1.6; }
+   .instagram .button { margin-top:0; }
+   .footer { padding:30px 0; border-top:1px solid var(--line); background:#050506; }
+   .footer-inner { display:flex; justify-content:space-between; flex-wrap:wrap; gap:15px; color:#92929c; font-size:.78rem; }
+   .footer a:hover { color:white; }
+   @media(max-width:820px) {
+     :root { --header:82px; }
+     .container { width:min(calc(100% - 28px),1220px); }
+     .menu-button { display:block; }
+     .nav { position:fixed; inset:0; z-index:1001; width:100%; height:100dvh; flex-direction:column; align-items:stretch; justify-content:flex-start; gap:0; padding:110px 24px 40px; overflow-y:auto; opacity:0; visibility:hidden; background:radial-gradient(circle at 90% 8%,rgba(220,0,28,.25),transparent 30%),#050506; transform:translateX(100%); transition:opacity .28s,visibility .28s,transform .28s; }
+     .nav.open { opacity:1; visibility:visible; transform:none; }
+     .nav a { display:flex; min-height:69px; align-items:center; border-bottom:1px solid var(--line); color:#fff; font:700 1rem Orbitron,sans-serif; text-transform:uppercase; }
+     .nav .nav-cta { justify-content:center; margin-top:25px; border:1px solid var(--bright); background:linear-gradient(135deg,var(--bright),#74000e); }
+     body.menu-open .brand { visibility:hidden; }
+     .hero { padding:calc(var(--header) + 60px) 0 75px; }
+     .back { margin-bottom:45px; }
+     .contact-area { padding:75px 0 90px; }
+     .cards { grid-template-columns:1fr; }
+     .instagram { padding:28px; }
+   }
+   @media(max-width:560px) {
+     .card { min-height:310px; padding:28px; }
+     .button { align-self:stretch; }
+     h1 { font-size:clamp(2.35rem,10vw,3.5rem); }
+     .footer-inner { flex-direction:column; }
+   }
+   @media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*:before,*:after { transition-duration:.01ms !important; } }
+ </style>
 </head>
-
-<body class="quote-page">
-  <header class="header">
-    <div class="container nav-wrap">
-      <a class="logo" href="index.html">
-        <img src="nv-works-logo.png" alt="NV Works Logo">
-      </a>
-
-      <button class="menu-btn" aria-label="Menü öffnen" aria-expanded="false">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-
-      <nav class="nav">
-        <a href="index.html#services">Leistungen</a>
-        <a href="index.html#benefits">Warum wir</a>
-        <a href="index.html#brands">Fahrzeuge</a>
-        <a href="index.html#process">Ablauf</a>
-        <a class="nav-button" href="quote.html">Angebot anfragen</a>
-      </nav>
-    </div>
-  </header>
-
-  <main>
-    <section class="quote-hero">
-      <canvas class="stars" aria-hidden="true"></canvas>
-
-      <div class="container reveal">
-        <a class="back" href="index.html">
-          ← Zurück zur Startseite
-        </a>
-
-        <p class="kicker">Persönliches Angebot</p>
-
-        <h1>Erzählen Sie uns von Ihrem Fahrzeug.</h1>
-
-        <p>
-          Füllen Sie das Formular aus. Wir prüfen Ihre Angaben und melden uns
-          mit einer persönlichen Beratung und einem individuellen Angebot.
-        </p>
-      </div>
-    </section>
-
-    <section class="form-area">
-      <div class="container form-layout">
-        <aside class="form-aside reveal">
-          <p class="kicker">NV Works</p>
-
-          <h2>Ihre Anfrage in wenigen Minuten.</h2>
-
-          <div>
-            <b>01</b>
-
-            <span>
-              <strong>Kontaktdaten</strong>
-              <small>Damit wir Sie erreichen können.</small>
-            </span>
-          </div>
-
-          <div>
-            <b>02</b>
-
-            <span>
-              <strong>Fahrzeug & Leistung</strong>
-              <small>Damit wir Ihr Projekt einschätzen können.</small>
-            </span>
-          </div>
-
-          <div>
-            <b>03</b>
-
-            <span>
-              <strong>Wunschtermin</strong>
-              <small>Wir bestätigen den Termin persönlich.</small>
-            </span>
-          </div>
-
-          <p class="aside-note">
-            <strong>Hinweis:</strong>
-            Das Absenden ist noch keine feste Terminbestätigung.
-          </p>
-        </aside>
-
-        <div class="form-box reveal">
-          <p class="preview">
-            <b>Vorschau-Modus:</b>
-            Formspree wird später mit zwei kleinen Änderungen aktiviert.
-          </p>
-
-          <!--
-            FORMSPREE SPÄTER AKTIVIEREN:
-
-            action="#" ersetzen durch:
-            action="https://formspree.io/f/DEINE_FORM_ID"
-
-            data-mode="preview" ersetzen durch:
-            data-mode="live"
-          -->
-
-          <form
-            id="quoteForm"
-            action="#"
-            method="POST"
-            data-mode="preview"
-          >
-            <input
-              type="hidden"
-              name="_subject"
-              value="Neue NV Works Kundenanfrage"
-            >
-
-            <section class="form-section">
-              <div class="form-title">
-                <b>01</b>
-
-                <span>
-                  <h2>Kontaktdaten</h2>
-                  <p>Wie können wir Sie erreichen?</p>
-                </span>
-              </div>
-
-              <div class="fields">
-                <label class="full">
-                  Vorname <em>*</em>
-
-                  <input
-                    name="Vorname"
-                    type="text"
-                    autocomplete="given-name"
-                    placeholder="Ihr Vorname"
-                    required
-                  >
-                </label>
-
-                <label>
-                  E-Mail-Adresse <em>*</em>
-
-                  <input
-                    name="E-Mail"
-                    type="email"
-                    autocomplete="email"
-                    placeholder="name@beispiel.de"
-                    required
-                  >
-                </label>
-
-                <label>
-                  Telefonnummer <em>*</em>
-
-                  <input
-                    name="Telefon"
-                    type="tel"
-                    autocomplete="tel"
-                    placeholder="+49 ..."
-                    required
-                  >
-                </label>
-
-                <label class="full">
-                  Wohnort / Postleitzahl <em>*</em>
-
-                  <input
-                    name="Wohnort / Postleitzahl"
-                    type="text"
-                    placeholder="Zum Beispiel: 10115 Berlin"
-                    required
-                  >
-                </label>
-              </div>
-            </section>
-
-            <section class="form-section">
-              <div class="form-title">
-                <b>02</b>
-
-                <span>
-                  <h2>Fahrzeug</h2>
-                  <p>Welches Fahrzeug möchten Sie veredeln?</p>
-                </span>
-              </div>
-
-              <div class="fields">
-                <label>
-                  Fahrzeugmarke <em>*</em>
-
-                  <select name="Fahrzeugmarke" required>
-                    <option value="">Bitte auswählen</option>
-                    <option>Acura</option>
-                    <option>Aston Martin</option>
-                    <option>Audi</option>
-                    <option>Bentley</option>
-                    <option>BMW</option>
-                    <option>Cadillac</option>
-                    <option>Chevrolet</option>
-                    <option>Chrysler</option>
-                    <option>Dodge</option>
-                    <option>Ferrari</option>
-                    <option>Ford</option>
-                    <option>GMC</option>
-                    <option>Jaguar</option>
-                    <option>Jeep</option>
-                    <option>Lamborghini</option>
-                    <option>Land Rover</option>
-                    <option>Lexus</option>
-                    <option>Maserati</option>
-                    <option>McLaren</option>
-                    <option>Mercedes-Benz</option>
-                    <option>Porsche</option>
-                    <option>Rolls-Royce</option>
-                    <option>Tesla</option>
-                    <option>Andere</option>
-                  </select>
-                </label>
-
-                <label>
-                  Modell <em>*</em>
-
-                  <input
-                    name="Modell"
-                    type="text"
-                    placeholder="Zum Beispiel: 3er, C-Klasse"
-                    required
-                  >
-                </label>
-
-                <label>
-                  Baujahr <em>*</em>
-
-                  <input
-                    name="Baujahr"
-                    type="number"
-                    min="1980"
-                    max="2030"
-                    placeholder="2022"
-                    required
-                  >
-                </label>
-
-                <label>
-                  Fahrgestellnummer (VIN)
-
-                  <input
-                    name="VIN"
-                    type="text"
-                    maxlength="17"
-                    placeholder="Optional"
-                  >
-                </label>
-              </div>
-            </section>
-
-            <section class="form-section">
-              <div class="form-title">
-                <b>03</b>
-
-                <span>
-                  <h2>Gewünschte Leistung</h2>
-                  <p>Welche Arbeiten interessieren Sie?</p>
-                </span>
-              </div>
-
-              <div class="fields">
-                <label class="full">
-                  Leistung <em>*</em>
-
-                  <select id="service" name="Leistung" required>
-                    <option value="">Bitte auswählen</option>
-                    <option value="ambient">Ambientebeleuchtung</option>
-                    <option value="starlight">Sternenhimmel</option>
-
-                    <option value="both">
-                      Ambientebeleuchtung & Sternenhimmel
-                    </option>
-
-                    <option value="consultation">
-                      Persönliche Beratung
-                    </option>
-                  </select>
-                </label>
-              </div>
-
-              <div class="options-panel" data-panel="ambient" hidden>
-                <h3>Ambientebeleuchtung</h3>
-
-                <div class="fields">
-                  <label>
-                    Steuerung
-
-                    <select name="Ambientebeleuchtung – Steuerung">
-                      <option value="">Bitte auswählen</option>
-                      <option>Smartphone / App</option>
-                      <option>Fahrzeugmenü / OEM-Integration</option>
-                      <option>Fernbedienung</option>
-                      <option>Beratung gewünscht</option>
-                    </select>
-                  </label>
-
-                  <label>
-                    Farbwunsch
-
-                    <select name="Ambientebeleuchtung – Farbe">
-                      <option value="">Bitte auswählen</option>
-                      <option>Mehrfarbig / RGB</option>
-                      <option>Einzelfarbe</option>
-                      <option>OEM-Farbpalette</option>
-                      <option>Noch offen</option>
-                    </select>
-                  </label>
-                </div>
-
-                <fieldset>
-                  <legend>Gewünschte Bereiche</legend>
-
-                  <div class="checks">
-                    <label>
-                      <input
-                        type="checkbox"
-                        name="Ambientebereiche"
-                        value="Armaturenbrett"
-                      >
-                      Armaturenbrett
-                    </label>
-
-                    <label>
-                      <input
-                        type="checkbox"
-                        name="Ambientebereiche"
-                        value="Türen"
-                      >
-                      Türen
-                    </label>
-
-                    <label>
-                      <input
-                        type="checkbox"
-                        name="Ambientebereiche"
-                        value="Fußraum"
-                      >
-                      Fußraum
-                    </label>
-
-                    <label>
-                      <input
-                        type="checkbox"
-                        name="Ambientebereiche"
-                        value="Mittelkonsole"
-                      >
-                      Mittelkonsole
-                    </label>
-                  </div>
-                </fieldset>
-              </div>
-
-              <div class="options-panel" data-panel="starlight" hidden>
-                <h3>Sternenhimmel</h3>
-
-                <div class="fields">
-                  <label>
-                    Anzahl der Sterne
-
-                    <select name="Sternenhimmel – Sternenanzahl">
-                      <option value="">Bitte auswählen</option>
-                      <option>400 Sterne</option>
-                      <option>600 Sterne</option>
-                      <option>800 Sterne</option>
-                      <option>1.200 Sterne</option>
-                      <option>1.600 Sterne</option>
-                      <option>2.000 Sterne</option>
-                      <option>Beratung gewünscht</option>
-                    </select>
-                  </label>
-
-                  <label>
-                    Dachhimmel-Material
-
-                    <select name="Sternenhimmel – Material">
-                      <option value="">Bitte auswählen</option>
-                      <option>Originalmaterial</option>
-                      <option>Vinyl</option>
-                      <option>Alcantara</option>
-                      <option>Ultrasuede</option>
-                      <option>Beratung gewünscht</option>
-                    </select>
-                  </label>
-
-                  <label>
-                    Farbe
-
-                    <select name="Sternenhimmel – Farbe">
-                      <option value="">Bitte auswählen</option>
-                      <option>Nur Weiß</option>
-                      <option>RGBW / Mehrfarbig</option>
-                    </select>
-                  </label>
-
-                  <label>
-                    Schiebedach / Panoramadach
-
-                    <select name="Schiebedach">
-                      <option value="">Bitte auswählen</option>
-                      <option>Ja</option>
-                      <option>Nein</option>
-                    </select>
-                  </label>
-                </div>
-
-                <fieldset>
-                  <legend>Zusätzliche Optionen</legend>
-
-                  <div class="checks">
-                    <label>
-                      <input
-                        type="checkbox"
-                        name="Sternenhimmel – Optionen"
-                        value="Twinkle-Effekt"
-                      >
-                      Twinkle-Effekt
-                    </label>
-
-                    <label>
-                      <input
-                        type="checkbox"
-                        name="Sternenhimmel – Optionen"
-                        value="Shooting Star"
-                      >
-                      Shooting Star
-                    </label>
-
-                    <label>
-                      <input
-                        type="checkbox"
-                        name="Sternenhimmel – Optionen"
-                        value="Wunschlogo"
-                      >
-                      Wunschlogo
-                    </label>
-
-                    <label>
-                      <input
-                        type="checkbox"
-                        name="Sternenhimmel – Optionen"
-                        value="Türverkleidung"
-                      >
-                      Türverkleidung
-                    </label>
-                  </div>
-                </fieldset>
-              </div>
-            </section>
-
-            <section class="form-section">
-              <div class="form-title">
-                <b>04</b>
-
-                <span>
-                  <h2>Wunschtermin</h2>
-                  <p>Wann möchten Sie Ihr Fahrzeug vorbeibringen?</p>
-                </span>
-              </div>
-
-              <div class="fields">
-                <label>
-                  Bevorzugtes Datum <em>*</em>
-
-                  <input
-                    id="date"
-                    name="Wunschdatum"
-                    type="date"
-                    required
-                  >
-                </label>
-
-                <label>
-                  Bevorzugte Uhrzeit <em>*</em>
-
-                  <select name="Wunschzeit" required>
-                    <option value="">Bitte auswählen</option>
-                    <option>08:00 – 10:00 Uhr</option>
-                    <option>10:00 – 12:00 Uhr</option>
-                    <option>12:00 – 14:00 Uhr</option>
-                    <option>14:00 – 16:00 Uhr</option>
-                    <option>16:00 – 18:00 Uhr</option>
-                    <option>Flexibel</option>
-                  </select>
-                </label>
-
-                <label class="full">
-                  Besondere Wünsche oder Fragen
-
-                  <textarea
-                    name="Nachricht"
-                    rows="6"
-                    placeholder="Beschreiben Sie Ihre Vorstellungen, Farben, Effekte oder weitere Details."
-                  ></textarea>
-                </label>
-              </div>
-            </section>
-
-            <div class="submit-area">
-              <label class="consent">
-                <input type="checkbox" required>
-
-                <span>
-                  Ich bestätige, dass meine Angaben zur Bearbeitung dieser
-                  Anfrage verwendet werden dürfen. <em>*</em>
-                </span>
-              </label>
-
-              <button class="btn primary" type="submit">
-                Anfrage absenden →
-              </button>
-
-              <p>
-                Das Absenden ist unverbindlich und noch keine
-                Terminbestätigung.
-              </p>
-            </div>
-
-            <div class="success" hidden>
-              <b>✓</b>
-
-              <h2>Die Vorschau funktioniert.</h2>
-
-              <p>
-                Das Formular ist noch nicht mit Formspree verbunden. Nach dem
-                Einsetzen der Formspree-ID werden echte Anfragen an die
-                Arbeits-E-Mail gesendet.
-              </p>
-
-              <button
-                class="btn secondary"
-                type="button"
-                data-reset
-              >
-                Formular weiter testen
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer simple-footer">
-    <div class="container footer-bottom">
-      <span>
-        © <span data-year></span> NV Works. Alle Rechte vorbehalten.
-      </span>
-
-      <a href="index.html">Zur Startseite</a>
-    </div>
-  </footer>
+<body>
+ <header class="site-header">
+   <div class="container nav-inner">
+     <a class="brand" href="index.html" aria-label="NV Works Startseite">
+       <img src="nv-works-logo.png" alt="NV Works Logo" onerror="this.hidden=true;this.nextElementSibling.style.display='inline'">
+       <span class="brand-text"><strong>NV</strong> WORKS</span>
+     </a>
+     <button class="menu-button" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="main-navigation"><span></span><span></span><span></span></button>
+     <nav class="nav" id="main-navigation" aria-label="Hauptnavigation">
+       <a href="index.html#leistungen">Leistungen</a>
+       <a href="index.html#vorteile">Warum wir</a>
+       <a href="index.html#fahrzeuge">Fahrzeuge</a>
+       <a href="index.html#ablauf">Ablauf</a>
+       <a class="nav-cta" href="quote.html" aria-current="page">Kontakt & Anfahrt</a>
+     </nav>
+   </div>
+ </header>
+ <main>
+   <section class="hero">
+     <div class="container">
+       <a class="back" href="index.html">← Zurück zur Startseite</a>
+       <p class="kicker">NV Works kontaktieren</p>
+       <h1>Ihr Projekt beginnt <span>mit einem Gespräch.</span></h1>
+       <p>Sie interessieren sich für Ambientebeleuchtung oder einen Sternenhimmel? Rufen Sie uns an. Wir besprechen Ihr Fahrzeug, Ihre Wünsche und einen passenden Termin persönlich mit Ihnen.</p>
+     </div>
+   </section>
+   <section class="contact-area" aria-labelledby="contact-title">
+     <div class="container">
+       <div class="intro">
+         <h2 id="contact-title">Kontakt & Anfahrt</h2>
+         <p>Sie können uns telefonisch erreichen und unseren Standort über Apple Karten öffnen.</p>
+       </div>
+       <div class="cards">
+         <article class="card dark">
+           <span class="card-number">01 / TELEFON</span>
+           <h3>Rufen Sie uns an</h3>
+           <p>Erzählen Sie uns von Ihrem Fahrzeug und Ihrem Projekt. Ihre Kontaktdaten und den gewünschten Termin besprechen wir direkt am Telefon.</p>
+           <div class="detail"><a href="tel:+4917661705436">+49 176 61705436</a></div>
+           <a class="button" href="tel:+4917661705436">Jetzt anrufen <span aria-hidden="true">→</span></a>
+         </article>
+         <article class="card">
+           <span class="card-number">02 / STANDORT</span>
+           <h3>Finden Sie uns</h3>
+           <p>Öffnen Sie unseren Standort in Apple Karten und lassen Sie sich die Route anzeigen. Vereinbaren Sie Ihren Besuch am besten vorab telefonisch.</p>
+           <a class="button secondary" href="https://maps.apple/p/~o9tqRirfQ~dsi" target="_blank" rel="noopener noreferrer">Standort in Apple Karten <span aria-hidden="true">↗</span></a>
+         </article>
+       </div>
+       <div class="instagram">
+         <div>
+           <h3>Unsere Arbeiten ansehen</h3>
+           <p>Einblicke in unsere Projekte auf Instagram: <strong>@nv.works1</strong></p>
+         </div>
+         <a class="button secondary" href="https://www.instagram.com/nv.works1/" target="_blank" rel="noopener noreferrer" aria-label="NV Works Projekte auf Instagram ansehen">Instagram öffnen <span aria-hidden="true">↗</span></a>
+       </div>
+       <p class="note">Termine und Besuche bitte telefonisch abstimmen.</p>
+     </div>
+   </section>
+ </main>
+ <footer class="footer">
+   <div class="container footer-inner">
+     <span>© <span id="year"></span> NV Works. Alle Rechte vorbehalten.</span>
+     <a href="index.html">Zur Startseite ↑</a>
+   </div>
+ </footer>
+ <script>
+   (() => {
+     const button = document.querySelector('.menu-button');
+     const nav = document.querySelector('.nav');
+     const closeMenu = () => {
+       button.setAttribute('aria-expanded', 'false');
+       button.setAttribute('aria-label', 'Menü öffnen');
+       nav.classList.remove('open');
+       document.body.classList.remove('menu-open');
+     };
+     button.addEventListener('click', () => {
+       const open = button.getAttribute('aria-expanded') !== 'true';
+       button.setAttribute('aria-expanded', String(open));
+       button.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
+       nav.classList.toggle('open', open);
+       document.body.classList.toggle('menu-open', open);
+     });
+     nav.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+     document.addEventListener('keydown', event => { if (event.key === 'Escape') closeMenu(); });
+     window.addEventListener('resize', () => { if (window.innerWidth > 820) closeMenu(); });
+     document.getElementById('year').textContent = new Date().getFullYear();
+   })();
+ </script>
 </body>
 </html>
